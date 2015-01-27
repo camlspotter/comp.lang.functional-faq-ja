@@ -90,7 +90,7 @@ In a functional language, the same program would be expressed without any variab
 sum [1..10]
 ```
 
-Here, [1..10] is an expression that represents the list of integers from 1 to 10, while sum is a function that can be used to calculate the sum of an arbitrary list of values.
+Here, `[1..10]` is an expression that represents the list of integers from 1 to 10, while sum is a function that can be used to calculate the sum of an arbitrary list of values.
 
 The same idea could also be used in (strict) functional languages such as SML or Scheme, but it is more common to find such programs written with an explicit loop, often expressed recursively. Nevertheless, there is still no need to update the values of the variables involved:
 
@@ -123,8 +123,8 @@ Where can I find out more about the history and motivation for functional progra
 Here are two useful references:
 
 "Conception, Evolution, and Application of Functional Programming Languages", Paul Hudak, ACM Computing Surveys, Volume 21, Number 3, pp.359-411, 1989.
-"Why functional programming matters", John Hughes, The Computer Journal, Volume 32, Number 2, April 1989. Available on the web from:
-http://www.cs.chalmers.se/~rjmh/Papers/whyfp.html.
+
+"Why functional programming matters", John Hughes, The Computer Journal, Volume 32, Number 2, April 1989. Available on the web from: http://www.cs.chalmers.se/~rjmh/Papers/whyfp.html.
 
 ### 2.3. Textbooks
 
@@ -132,25 +132,27 @@ Are there any textbooks about functional programming?
 
 Yes, here are a selection:
 
-Programming:
+#### Programming:
 
 "Introduction to functional programming using Haskell", 2nd edition, Richard Bird, Prentice Hall Europe, 1998. ISBN 0-13-484346-0.
-"The Haskell school of expression: Learning functional programming through multimedia", Paul Hudak, Cambridge University Press, 2000. ISBN 0-521-64338-4. Further information is available on the web from:
-http://haskell.org/soe.
-"Haskell: The craft of functional programming", 2nd edition, Simon Thompson, Addison-Wesley, 1999. ISBN 0-201-34275-8. Further information is available on the web from:
-http://www.cs.ukc.ac.uk/people/staff/sjt/craft2e.
-"ML for the working programmer", 2nd Edition, L.C. Paulson, Cambridge University Press, 1996. ISBN 0-521-56543-X. Further information is available on the web from:
-http://www.cl.cam.ac.uk/users/lcp/MLbook/.
-Algorithms and data structures:
 
-"Purely functional data structures", Chris Okasaki, Cambridge University Press, 1998. ISBN 0-521-63124-6.
-"Algorithms: A functional programming approach", Fethi Rabhi and Guy Lapalme, Addison-Wesley, 1999. ISBN 0-201-59604-0. Further information is available on the web from:
-http://www.iro.umontreal.ca/~lapalme/Algorithms-functional.html.
-Implementation:
+"The Haskell school of expression: Learning functional programming through multimedia", Paul Hudak, Cambridge University Press, 2000. ISBN 0-521-64338-4. Further information is available on the web from: http://haskell.org/soe.
+
+"Haskell: The craft of functional programming", 2nd edition, Simon Thompson, Addison-Wesley, 1999. ISBN 0-201-34275-8. Further information is available on the web from: http://www.cs.ukc.ac.uk/people/staff/sjt/craft2e.
+
+"ML for the working programmer", 2nd Edition, L.C. Paulson, Cambridge University Press, 1996. ISBN 0-521-56543-X. Further information is available on the web from: http://www.cl.cam.ac.uk/users/lcp/MLbook/.
+
+#### Algorithms and data structures:
+
+* "Purely functional data structures", Chris Okasaki, Cambridge University Press, 1998. ISBN 0-521-63124-6. 
+* "Algorithms: A functional programming approach", Fethi Rabhi and Guy Lapalme, Addison-Wesley, 1999. ISBN 0-201-59604-0. Further information is available on the web from: http://www.iro.umontreal.ca/~lapalme/Algorithms-functional.html.
+
+#### Implementation:
 
 "The implementation of functional programming languages", Simon Peyton Jones, Prentice Hall, 1987. ISBN 0-13-453333-X.
-"Compiling with continuations", Andrew Appel, Cambridge University Press, 1992. ISBN 0-521-41695-7. Further information is available on the web from:
-http://www.cup.org/Titles/416/0521416957.html.
+
+"Compiling with continuations", Andrew Appel, Cambridge University Press, 1992. ISBN 0-521-41695-7. Further information is available on the web from: http://www.cup.org/Titles/416/0521416957.html.
+
 There are several other textbooks available, particularly in the programming and implementation categories. A comparison of a number of functional programming textbooks is made in the following article:
 
 "Comparative review of functional programming textbooks (Bailey, Bird and Wadler, Holyer, Paulson, Reade, Sokoloski, Wikstrom)", Simon Thompson, Computing Reviews, May 1992 (CR number 9205-0262).
@@ -161,27 +163,25 @@ Are there any journals and conferences about functional programming?
 
 Yes, here are a selection:
 
-Journals:
+#### Journals:
 
-The Journal of Functional Programming (JFP), published by Cambridge University Press. Further information is available on the web from:
-http://www.dcs.gla.ac.uk/jfp/.
-The Journal of Functional and Logic Programming (JFLP), an electronic journal published by MIT Press, and available on the web from:
-http://www.cs.tu-berlin.de/journal/jflp/.
-Lisp and Symbolic Computation, published by Kluwer.
-Conferences:
+* The Journal of Functional Programming (JFP), published by Cambridge University Press. Further information is available on the web from: http://www.dcs.gla.ac.uk/jfp/.
+* The Journal of Functional and Logic Programming (JFLP), an electronic journal published by MIT Press, and available on the web from: http://www.cs.tu-berlin.de/journal/jflp/.
+* Lisp and Symbolic Computation, published by Kluwer.
 
-The International Conference on Functional Programming (ICFP). This conference combines and replaces the earlier conferences on Lisp and Functional Programming (LFP), and Functional Programming Languages and Computer Architecture (FPCA). Further information about the next ICFP conference (October 2002 at the time of writing) is available on the web from:
-http://icfp2002.cs.brown.edu/.
-Mathematics of Program Construction (MPC). Further information about the most recent MPC conference (July 2000 at the time of writing) is available on the web from:
-http://seide.di.uminho.pt/~mpc2000/.
-Principles of Programming Languages (POPL). Further information about the next POPL conference (January 2001 at the time of writing) is available on the web from:
-http://www.daimi.au.dk/~popl01/.
-European Symposium on Programming (ESOP). Further information about the next ESOP conference (April 2001 at the time of writing) is available on the web from:
-http://www.md.chalmers.se/~dave/esop/.
+#### Conferences:
+
+The International Conference on Functional Programming (ICFP). This conference combines and replaces the earlier conferences on Lisp and Functional Programming (LFP), and Functional Programming Languages and Computer Architecture (FPCA). Further information about the next ICFP conference (October 2002 at the time of writing) is available on the web from: http://icfp2002.cs.brown.edu/.
+
+Mathematics of Program Construction (MPC). Further information about the most recent MPC conference (July 2000 at the time of writing) is available on the web from: http://seide.di.uminho.pt/~mpc2000/.
+
+Principles of Programming Languages (POPL). Further information about the next POPL conference (January 2001 at the time of writing) is available on the web from: http://www.daimi.au.dk/~popl01/.
+
+European Symposium on Programming (ESOP). Further information about the next ESOP conference (April 2001 at the time of writing) is available on the web from: http://www.md.chalmers.se/~dave/esop/.
+
 Most of these conferences have proceedings published by the ACM press, or in the Springer Verlag LNCS (Lecture Notes in Computer Science) series.
 
 In addition to the above, Philip Wadler edits a column on functional programming for the Formal Aspects of Computer Science Newsletter, which is published by the British Computing Society Formal Aspects of Computing group and Formal Methods Europe.
-
 
 ### 2.5. Schools and workshops
 
@@ -189,35 +189,48 @@ Are there any schools and workshops on functional programming?
 
 Yes, here are a selection:
 
-Schools:
+#### Schools:
 
 Summer School and Workshop on Advanced Functional Programming, August 19-24, 2002, Oxford, England. Further information is available on the web from:
 http://www.functional-programming.org/afp/.
+
 The Third International Summer School on Advanced Functional Programming Techniques, September 12-19, 1998, Braga, Portugal. Further information is available on the web from:
 http://www.di.uminho.pt/~afp.
+
 Spring School on Advanced Functional Programming Techniques, May 24-31, 1995, Baastad, Sweden. The proceedings of the school were published in the Springer Verlag LNCS (Lecture Notes in Computer Science) series, number 925.
+
 The Second International Summer School on Advanced Functional Programming Techniques, August 25-30, 1996, Washington, USA. The proceedings of the school were published in the Springer Verlag LNCS (Lecture Notes in Computer Science) series, number 1129. Further information is available on the web from:
 http://www.cse.ogi.edu/PacSoft/summerschool96.html.
-Workshops:
+
+#### Workshops:
 
 Haskell Workshop, September 2, 2001, Florence, Italy. Held in conjunction with PLI 2001. Further information is available on the web from:
 http://www.cs.uu.nl/people/ralf/hw2001.html
+
 Haskell Workshop, September 17, 2000, Montreal, Canada. Held in conjunction with PLI 2000. Further information is available on the web from:
 http://www.cs.nott.ac.uk/~gmh/hw00.html
+
 Third Haskell Workshop, October 1, 1999, Paris, France. Held in conjunction with ICFP'99. Further information is available on the web from:
 http://www.haskell.org/HaskellWorkshop.html
+
 Workshop on Algorithmic Aspects of Advanced Programming Languages, September 29-30, 1999, Paris, France. Further information is available on the web from:
 http://www.cs.columbia.edu/~cdo/waaapl.html.
+
 1st Scottish Functional Programming Workshop, August 29-September 1, 1999, Stirling, Scotland. Further information is available on the web from:
 http://www.cee.hw.ac.uk/~gjm/sfp/.
+
 From 1988 to 1998 the Glasgow functional programming group organised a yearly workshop in Scotland. Further information is available on the web from:
 http://www.dcs.gla.ac.uk/fp/workshops/.
+
 The 9th International Workshop on the Implementation of Functional Languages, Sept 10-12, 1997, St. Andrews, Scotland. Further information is available on the web from:
 http://www.dcs.st-and.ac.uk/~ifl97.
+
 The Haskell Workshop, June 7, 1997, Amsterdam, The Netherlands. Held is conjunction with ICFP'97. Further information is available on the web from:
 http://www.cse.ogi.edu/~jl/ACM/Haskell.html.
+
 The 2nd Fuji International Workshop on Functional and Logic Programming, November 1-4, 1996, Shonan Village, Japan. Further information is available on the web from:
 http://www.kurims.kyoto-u.ac.jp/~ohori/fuji96.html.
+
 The 1st Workshop on Functional Programming in Argentina, September 12, 1996, Buenos Aires, Argentina. Further information is available on the web from:
 http://www-lifia.info.unlp.edu.ar/~lambda/first/english/.
 
@@ -227,7 +240,7 @@ Are functional programming languages useful in education?
 
 Functional languages are gathering momentum in education because they facilitate the expression of concepts and structures at a high level of abstraction. Many university computing science departments now make use of functional programming in their undergraduate courses; indeed, a number of departments teach a functional language as their first programming language. Further information about the use of functional programming languages in education (including links to relevant conferences and workshops) is available on the web from:
 
-http://www.cs.kun.nl/fple/.
+> http://www.cs.kun.nl/fple/.
 
 ## 3. Technical topics
 
@@ -254,14 +267,22 @@ Currying has its origins in the mathematical study of functions. It was observed
 
 Apparently, Frege did not pursue the idea further. It was rediscovered independently by Schoenfinkel, together with the result that all functions having to do with the structure of functions can be built up out of only two basic combinators, K and S. About a decade later, this sparked off the subject of combinatory logic, invented by Haskell Curry. The term "currying" honours him; the function f' in the example above is called the "curried" form of the function f. From a functional programming perspective, currying can be described by a function:
 
+```
 curry : ((a,b) -> c) -> (a -> b -> c)
+```
+
 The inverse operation is, unsurprisingly, refered to as uncurrying:
 
+```
 uncurry : (a -> b -> c) -> ((a,b) -> c)
+```
+
 For further reading, see:
 
 "Highlights of the history of the lambda-calculus", J. Barkley Rosser, ACM Lisp and Functional Programming, 1982.
+
 "Ueber die Bausteine der mathematischen Logik", Moses Sch\"onfinkel, Mathematische Annalen, 92, 1924. An English translation, "On the building blocks of mathematical logic", appears in "From Frege to G\"odel", Jean van Heijenoort, Harvard University Press, Cambridge, 1967.
+
 "Combinatory logic", Haskell B. Curry and Robert Feys, North-Holland, 1958. This work also contains many references to earlier work by Curry, Church, and others.
 
 ### 3.3. Monads
@@ -270,14 +291,13 @@ What is a "monad", and what are they used for?
 
 The concept of a monad comes from category theory; full details can be found in any standard textbook on the subject. Much of the interest in monads in functional programming is the result of recent papers that show how monads can be used to describe all kinds of different programming language features (for example, I/O, manipulation of state, continuations and exceptions) in purely functional languages such as Haskell:
 
-"Comprehending monads", Philip Wadler, Mathematical Structures in Computer Science, Special issue of selected papers from 6th Conference on Lisp and Functional Programming, 1992. Available on the web from:
-http://www.cs.bell-labs.com/~wadler/topics/monads.html#monads
-"The essence of functional programming", Philip Wadler, Invited talk, 19th Symposium on Principles of Programming Languages, ACM Press, Albuquerque, January 1992. Available on the web from:
-http://www.cs.bell-labs.com/~wadler/topics/monads.html#essence
-"Imperative functional programming", Simon Peyton Jones and Philip Wadler, 20th Symposium on Principles of Programming Languages, ACM Press, Charlotte, North Carolina, January 1993. Available on the web from:
-http://www.cs.bell-labs.com/~wadler/topics/monads.html#imperative
-"How to declare an imperative", Philip Wadler, ACM Computing Surveys, to appear. Available on the web from:
-http://www.cs.bell-labs.com/~wadler/topics/monads.html#monadsdeclare
+"Comprehending monads", Philip Wadler, Mathematical Structures in Computer Science, Special issue of selected papers from 6th Conference on Lisp and Functional Programming, 1992. Available on the web from: http://www.cs.bell-labs.com/~wadler/topics/monads.html#monads
+
+"The essence of functional programming", Philip Wadler, Invited talk, 19th Symposium on Principles of Programming Languages, ACM Press, Albuquerque, January 1992. Available on the web from: http://www.cs.bell-labs.com/~wadler/topics/monads.html#essence
+
+"Imperative functional programming", Simon Peyton Jones and Philip Wadler, 20th Symposium on Principles of Programming Languages, ACM Press, Charlotte, North Carolina, January 1993. Available on the web from: http://www.cs.bell-labs.com/~wadler/topics/monads.html#imperative
+
+"How to declare an imperative", Philip Wadler, ACM Computing Surveys, to appear. Available on the web from: http://www.cs.bell-labs.com/~wadler/topics/monads.html#monadsdeclare
 
 ### 3.4. Parsers
 
@@ -286,16 +306,22 @@ How can I write a "parser" in a functional programming language?
 A parser is a program that converts a list of input tokens, usually characters, into a value of the appropriate type. A simple example might be a function to find the integer value represented by a string of digits. A more complex example might be to translate programs written in a particular concrete syntax into a suitable abstract syntax as the first stage in the implementation of a compiler or interpreter. There are two common ways to write a parser in a functional language:
 
 Using a parser generator tool. Some functional language implementations support tools that generate a parser automatically from a specification of the grammar. See:
+
 Happy: a parser generator system for Haskell and Gofer, similar to the tool `yacc' for C. Available on the web from:
 http://www.dcs.gla.ac.uk/fp/software/happy/.
+
 Ratatosk: a parser and scanner generator for Gofer. Available by ftp from:
 Host:	ftp.diku.dk;
 Directory:	 /pub/diku/dists.
+
 ML-Yacc and ML-Lex: an LALR parser generator and a lexical analyser generator for Standard ML. Included with SML/NJ, available by ftp from:
 Host:	ftp.research.bell-labs.com;
 Directory:	 /dist/smlnj.
+
 Using combinator parsing. Parsers are represented by functions and combined with a small set of combinators, leading to parsers that closely resemble the grammar of the language being read. Parsers written in this way can use backtracking. See:
+
 "How to replace failure with a list of successes", Philip Wadler, FPCA '85, Springer Verlag LNCS 201, 1985.
+
 "Higher-order functions for parsing", Graham Hutton, Journal of Functional Programming, Volume 2, Number 3, July 1992. Available on the web from:
 http://www.cs.nott.ac.uk/~gmh/bib.html#parsing.
 
@@ -319,13 +345,18 @@ In some circles, programs written in functional languages have obtained a reputa
 Here are a selection of references for further reading:
 
 Over 25 implementations of different functional languages have been compared using a single program, the "Pseudoknot" benchmark, which is a floating-point intensive application taken from molecular biology. See:
+
 "Benchmarking implementations of functional languages with 'Pseudoknot', a float-intensive benchmark", Pieter H. Hartel et al, Journal of Functional Programming, 6(4):621-655, July 1996. Available on the web from:
 ftp://ftp.fwi.uva.nl/pub/computer-systems/functional/reports/.
+
 The paper below compares five implementations of lazy functional languages:
+
 "Benchmarking implementations of lazy functional languages", P.H. Hartel and K.G. Langendoen, FPCA 93, ACM, pp 341-349. Available by ftp from:
 Host:	ftp.fwi.uva.nl;
 Directory:	 pub/functional/reports.
+
 Experiments with a heavily optimising compiler for Sisal, a strict functional language, show that functional programs can be faster than Fortran. See:
+
 "Retire FORTRAN? A debate rekindled", D.C. Cann, Communications of the ACM, 35(8), pp. 81-89, August 1992.
 Postscript versions of a number of papers from the 1995 conference on High Performance Functional Computing (HPFC) are available on the web from:
 ftp://sisal.llnl.gov/pub/hpfc/index.html.
@@ -337,7 +368,9 @@ Where can I find out about applications of functional programming?
 Here are a selection of places to look:
 
 "Special issue on state-of-the-art applications of pure functional programming languages", edited by Pieter Hartel and Rinus Plasmeijer, Journal of Functional Programming, Volume 5, Number 3, July 1995.
+
 "Applications of functional programming", edited by Colin Runciman and David Wakeling, UCL Press, 1995. ISBN 1-85728-377-5.
+
 An online list of real-world applications of functional programming is maintained, which includes programs written in several different functional languages. The main criterion for being considered a real-world application is that the program was written primarily to perform some task, rather than to experiment with functional programming.
 Further details are available on the web from:
 
@@ -352,12 +385,16 @@ This section gives some pointers to other internet resources on functional progr
 
 Philip Wadler's guide to functional programming on the web:
 http://cm.bell-labs.com/cm/cs/who/wadler/guide.html.
+
 Philip Wadler's list of real-world application of functional programming:
 http://www.cs.bell-labs.com/~wadler/realworld/.
+
 The SEL-HPC WWW functional programming archive:
 http://hypatia.dcs.qmw.ac.uk/SEL-HPC/Articles/FuncArchive.html.
+
 Jon Mountjoy's functional languages page:
 http://carol.wins.uva.nl/~jon/func.html.
+
 Claus Reinke's functional programming bookmarks:
 http://website.lineone.net/~claus_reinke/FP.html.
 
@@ -365,16 +402,22 @@ http://website.lineone.net/~claus_reinke/FP.html.
 
 The Chalmers functional programming group:
 http://www.md.chalmers.se/Cs/Research/Functional/.
+
 The Glasgow functional programming group:
 http://www.dcs.gla.ac.uk/fp.
+
 The Nijmegen functional programming group:
 http://www.cs.kun.nl/~clean.
+
 The Nottingham foundations of programming group:
 http://www.cs.nott.ac.uk/Research/fop/index.html.
+
 The St Andrews functional programming group:
 http://www-fp.dcs.st-and.ac.uk/.
+
 The Yale functional programming group:
 http://www.cs.yale.edu/HTML/YALE/CS/haskell/yale-fp.html.
+
 The York functional programming group:
 http://www.cs.york.ac.uk/fp/.
 
@@ -382,10 +425,13 @@ http://www.cs.york.ac.uk/fp/.
 
 For discussion about ML:
 comp.lang.ml.
+
 For discussion about Scheme:
 comp.lang.scheme.
+
 For discussion about Lisp:
 comp.lang.lisp.
+
 For discussion about APL, J, etc:
 comp.lang.apl.
 
@@ -394,12 +440,15 @@ comp.lang.apl.
 Mike Joy's bibliography on functional programming languages, in refer(1) format:
 Host:	ftp.dcs.warwick.ac.uk;
 Directory:	 /pub/biblio.
+
 Tony Davie's bibliography of over 2,600 papers, articles and books on functional programming, available as a text file or a hypercard stack by ftp from:
 Host:	tamdhu.dcs.st-and.ac.uk;
 Directory:	 /pub/staple.
+
 "State in functional programming: an annotated bibliography", edited by P. Hudak and D. Rabin, available as a dvi or postscript file by ftp from:
 Host:	nebula.cs.yale.edu;
 Directory:	 /pub/yale-fp/papers.
+
 Wolfgang Schreiner's annotated bibliography of over 350 publications on parallel functional programming (most with abstracts), available on the web from:
 http://www.risc.uni-linz.ac.at/people/schreine/papers/pfpbib.ps.gz.
 
@@ -407,8 +456,10 @@ http://www.risc.uni-linz.ac.at/people/schreine/papers/pfpbib.ps.gz.
 
 The smugweb system for typesetting Haskell code in TeX, available from:
 http://www5.informatik.uni-jena.de/~joe/smugweb.html.
+
 The miratex package for typesetting Miranda(TM) code in TeX, available from:
 http://www.cs.tcd.ie/www/jgllgher/miratex/index.html.
+
 Denis Howe's translators from Miranda(TM) to LML and Haskell, available from:
 http://wombat.doc.ic.ac.uk/pub/mira2lml;
 http://wombat.doc.ic.ac.uk/pub/mira2hs.
@@ -445,6 +496,7 @@ Over the years more and more features have been added, including subsorting, fun
 
 Host:	ftp.Uni-Bremen.DE;
 Directory:	 /pub/programming/languages/ASpecT.
+
 The most important application of ASpecT to date is the interactive graph visualization system daVinci; currently (September '96), version 2.0.x is composed of 34.000 lines of ASpecT code, 12.000 lines of C code and 8000 lines of Tcl/Tk code. daVinci is an X11 program, and is available for UNIX workstations from Sun, HP, IBM, DEC, SGI, and for Intel PCs with a UNIX operating system. Further information about daVinci is available on the web from:
 
 http://www.Informatik.Uni-Bremen.DE/~davinci.
@@ -454,10 +506,15 @@ http://www.Informatik.Uni-Bremen.DE/~davinci.
 Caml is a dialect of the ML language developed at INRIA that does not comply to the Standard, but actually tries to go beyond the Standard, in particular in the areas of separate compilation, modules, and objects. Two implementations of Caml are available:
 
 The older implementation, Caml Light, is distinguished by its small size, modest memory requirements, availability on microcomputers, simple separate compilation, interface with C, and portable graphics functions. It runs on most Unix machines, on the Macintosh and on PCs under Ms Windows and MSDOS. The current version at the time of writing is 0.71.
+
 A more ambitious implementation, Objective Caml (formerly known as Caml Special Light), is also available. It adds the following extensions to Caml Light:
+
 Full support for objects and classes, here combined for the first time with ML-style type reconstruction;
+
 A powerful module calculus in the style of Standard ML, but providing better support for separate compilation;
+
 A high-performance native code compiler, in addition to a Caml Light-style bytecode compiler.
+
 Objective Caml is available for Unix and Windows 95/NT, with the native-code compiler supporting the following processors: Alpha, Sparc, Pentium, Mips, Power, HPPA.
 
 Both implementations of Caml are available by ftp from:
@@ -474,16 +531,16 @@ http://pauillac.inria.fr/caml/index-fra.html (French).
 
 The Concurrent Clean system is a programming environment for the functional language Concurrent Clean, developed at the University of Nijmegen in The Netherlands. The system is one of the fastest implementations of functional languages available at the time of writing. Through the use of uniqueness typing, it is possible to write purely functional interactive programs, including windows, menus, dialogs, etc. It is also possible to develop real-life applications that interface with non-functional systems. With version 1.0, the language emerged from an intermediate language to a proper programming language. Features provided by the language include:
 
-Lazy evaluation;
-Modern input/output;
-Annotations for parallelism;
-Automatic strictness analysis;
-Annotations for evaluation order;
-Inferred polymorphic uniqueness types;
-Records, mutable arrays, module structure;
-Existential types, type classes, constructor classes;
-Strong typing, based on the Milner/Mycroft scheme.
-Concurrent Clean is available for PCs (Microsoft Windows, Linux), Macintoshes (Motorola, PowerPC), and Sun4s (Solaris, SunOS). The system is available by ftp from:
+* Lazy evaluation;
+* Modern input/output;
+* Annotations for parallelism;
+* Automatic strictness analysis;
+* Annotations for evaluation order;
+* Inferred polymorphic uniqueness types;
+* Records, mutable arrays, module structure;
+* Existential types, type classes, constructor classes;
+* Strong typing, based on the Milner/Mycroft scheme.
+* Concurrent Clean is available for PCs (Microsoft Windows, Linux), Macintoshes (Motorola, PowerPC), and Sun4s (Solaris, SunOS). The system is available by ftp from:
 
 Host:	ftp.cs.kun.nl;
 Directory:	/pub/Clean.
@@ -498,28 +555,29 @@ A book describing the background and implementation of Concurrent Clean is also 
 
 Erlang is a dynamically typed concurrent functional programming language for large industrial real-time systems. Features of Erlang include:
 
-Modules;
-Recursion equations;
-Explicit concurrency;
-Pattern matching syntax;
-Dynamic code replacement;
-Foreign language interface;
-Real-time garbage collection;
-Asynchronous message passing;
-Relative freedom from side effects;
-Transparent cross-platform distribution;
-Primitives for detecting run-time errors.
+* Modules;
+* Recursion equations;
+* Explicit concurrency;
+* Pattern matching syntax;
+* Dynamic code replacement;
+* Foreign language interface;
+* Real-time garbage collection;
+* Asynchronous message passing;
+* Relative freedom from side effects;
+* Transparent cross-platform distribution;
+* Primitives for detecting run-time errors.
+
 Erlang is freely available on the web from:
 
 http://www.erlang.org.
 Erlang is distributed together with full source code for a number of applications, including:
 
-Inets - HTTP 1.0 server and FTP client;
-Orber - CORBA v2.0 Object Request Broker (ORB);
-ASN.1 - compile-time and runtime package for ASN.1;
-SNMP - extensible SNMP v1/v2 agent and MIB compiler;
-Mnesia - distributed real-time database for Erlang;
-Mnemosyne - optional query language for Mnesia.
+* Inets - HTTP 1.0 server and FTP client;
+* Orber - CORBA v2.0 Object Request Broker (ORB);
+* ASN.1 - compile-time and runtime package for ASN.1;
+* SNMP - extensible SNMP v1/v2 agent and MIB compiler;
+* Mnesia - distributed real-time database for Erlang;
+* Mnemosyne - optional query language for Mnesia.
 See also:
 
 "Concurrent programming in Erlang" (second edition), J. Armstrong, M. Williams, R. Virding, and Claes Wikström, Prentice Hall, 1996. ISBN 0-13-508301-X.
@@ -534,6 +592,7 @@ A interpreter and a compiler (to C) for FP are available by ftp from:
 Host:	gatekeeper.dec.com;
 Directory:	 pub/usenet/comp.sources.unix/volume13/funcproglang;
 Directory:	 pub/usenet/comp.sources.unix/volume20/fpc.
+
 The Illinois FP system supports a modified version of FP that has a more Algol-like syntax and structure, and is described in the following article:
 
 "The Illinois functional programming interpreter", Arch D. Robison, Proceedings of the SIGPLAN '87 Symposium on Interpreters and Interpretive Techniques, SIGPLAN notices, Volume 22, Number 7, July 1987.
@@ -546,12 +605,13 @@ The most recent version of Gofer, 2.30a, is available by ftp from:
 
 Host:	ftp.cs.nott.ac.uk;
 Directory:	 /nott-fp/languages/gofer.
+
 Gofer runs on a wide range of machines including PCs, Ataris, Amigas, etc. as well as larger Unix-based systems. A version for the Apple Macintosh is also available, by ftp from:
 
 Host:	ftp.dcs.glasgow.ac.uk;
 Directory:	 /pub/haskell/gofer/macgofer.
-Please note the spelling of Gofer, derived from the notion that functional languages are GO(od) F(or) E(quational) R(easoning). This is not to be confused with `Gopher', the widely used internet distributed information delivery system.
 
+Please note the spelling of Gofer, derived from the notion that functional languages are GO(od) F(or) E(quational) R(easoning). This is not to be confused with `Gopher', the widely used internet distributed information delivery system.
 
 ### 5.7. Haskell
 
@@ -564,16 +624,20 @@ At the time of writing, there are three different Haskell systems available, dev
 
 Host:	ftp.cs.chalmers.se;
 Directory:	 /pub/haskell.
+
 Host:	ftp.dcs.glasgow.ac.uk;
 Directory:	 /pub/haskell.
+
 Host:	haskell.cs.yale.edu;
 Directory:	 /pub/haskell.
+
 Host:	ftp.cs.nott.ac.uk;
 Directory:	 /haskell.
+
 Host:	src.doc.ic.ac.uk;
 Directory:	 /pub/computing/programming/languages/haskell.
-You can join the Haskell mailing list by emailing majordomo@dcs.gla.ac.uk, with a message body of the form: subscribe haskell Forename Surname <email@address>.
 
+You can join the Haskell mailing list by emailing majordomo@dcs.gla.ac.uk, with a message body of the form: subscribe haskell Forename Surname <email@address>.
 
 ### 5.8. Hope
 
@@ -603,7 +667,9 @@ http://www.jsoftware.com.
 Miranda was designed in 1985-6 by David Turner with the aim of providing a standard non-strict purely functional language, and is described in the following articles:
 
 "Miranda: a non-strict functional language with polymorphic types", D.A. Turner, Proceedings FPLCA, Nancy, France, September 1985 (Springer LNCS vol 201, pp 1-16).
+
 "An overview of Miranda", D.A. Turner, SIGPLAN Notices, vol 21, no 12, pp 158-166, December 1986.
+
 Miranda was the first widely disseminated language with non-strict semantics and polymorphic strong typing, and is running at over 600 sites, including 250 universities. It is widely used for teaching, often in conjunction with "Introduction to Functional Programming", by Bird and Wadler, which uses a notation closely based on Miranda. It has also had a strong influence on the subsequent development of the field, and provided one of the main inputs for the design of Haskell.
 
 The Miranda™ system is a commercial product of Research Software Limited. Miranda release two (the current version at the time of writing) supports unbounded precision integers and has a module system with provision for parameterized modules and a built in "make" facility. The compiler works in conjunction with a screen editor and programs are automatically recompiled after edits. There is also an online reference manual.
@@ -635,11 +701,13 @@ Directory:	 /usr/rowan/sml-archive/.
 The Standard ML language is formally defined by:
 
 "The Definition of Standard ML - Revised", Robin Milner, Mads Tofte, Robert Harper, and David MacQueen, MIT, 1997. ISBN 0-262-63181-4.
-Further information is available on the web from:
 
+Further information is available on the web from:
 http://mitpress.mit.edu/promotions/books/MILDPRF97.
+
 "Commentary on Standard ML", Robin Milner and Mads Tofte, MIT, 1990. ISBN 0-262-63137-7. Further information is available on the web from:
 http://mitpress.mit.edu/promotions/books/MILCPF90.
+
 There is now a revised version of Standard ML, sometimes referred to as "Standard ML '97" to distinguish it from the original 1990 version. The new version combines modest changes in the language with a major revision and expansion of the SML Basis Library. Further details about Standard ML '97 are available on the web from:
 
 http://cm.bell-labs.com/cm/cs/what/smlnj/sml97.html.
@@ -686,6 +754,7 @@ or by ftp from:
 
 Host:	ftp.ps.uni-sb.de;
 Directory:	 /pub/oz.
+
 Specific questions on Oz may be emailed oz@ps.uni-sb.de. You can join the Oz users mailing list by emailing oz-users-request@ps.uni-sb.de.
 
 
@@ -693,14 +762,16 @@ Specific questions on Oz may be emailed oz@ps.uni-sb.de. You can join the Oz use
 
 Pizza is a strict superset of Java that incorporates three ideas from functional programming:
 
-Parametric polymorphism;
-Higher-order functions;
-Algebraic data types.
+* Parametric polymorphism;
+* Higher-order functions;
+* Algebraic data types.
+
 Pizza is defined by translation into Java and compiles into the Java Virtual Machine, requirements which strongly constrain the design space. Thus Pizza programs interface easily with Java libraries, and programs first developed in Pizza may be automatically converted to Java for ease of maintenance. The Pizza compiler is itself written in Pizza, and may be used as a replacement for Sun's Java compiler (except that the Pizza compiler runs faster).
 
 Pizza was designed by Martin Odersky and Philip Wadler, and implemented by Odersky. The design is described in the following paper:
 
 "Pizza into Java: translating theory into practice", Martin Odersky and Philip Wadler, 24th ACM Symposium on Principles of Programming Languages, Paris, January 1997.
+
 The paper, downloads, and other information on Pizza is available on the web from any of the following locations (which mirror each other):
 
 http://www.cis.unisa.edu.au/~pizza;
@@ -722,6 +793,7 @@ Scheme is a dialect of Lisp that stresses conceptual elegance and simplicity. It
 Further information about Scheme is available on the web from:
 
 http://www.schemers.org.
+
 There is an unmoderated usenet newsgroup, comp.lang.scheme, for the discussion of topics related to Scheme. A list of frequently asked questions (which includes details of the many books and papers concerned with Scheme) for this newsgroup is available by ftp from:
 
 Host:	ftp.think.com;
