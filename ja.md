@@ -1,5 +1,8 @@
-# Frequently Asked Questions for [comp.lang.functional](news:comp.lang.functional)
+# この文書は翻訳途中です。
 
+とりあえずテキトーに訳して後から考えるスタイルでやっていきますので、このパラグラフが存在している内は読むのを推奨しません。
+
+# Frequently Asked Questions for [comp.lang.functional](news:comp.lang.functional)
 
 Edited by [Graham Hutton](http://www.cs.nott.ac.uk/~gmh), University of Nottingham
 
