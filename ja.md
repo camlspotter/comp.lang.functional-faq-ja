@@ -2,60 +2,33 @@
 
 とりあえずテキトーに訳して後から考えるスタイルでやっていきますので、このパラグラフが存在している内は読むのを推奨しません。
 
-# Frequently Asked Questions for [comp.lang.functional](news:comp.lang.functional)
+-----
 
-Edited by [Graham Hutton](http://www.cs.nott.ac.uk/~gmh), University of Nottingham
+# この翻訳について
 
-Version of November 2002
-(This document is no longer being updated)
+この「関数型言語 FAQ」は "FAQ for comp.lang.functional" の邦訳です。 
 
-1. This document
-2. General topics
-2.1. Functional languages 
-2.2. History and motivation 
-2.3. Textbooks 
-2.4. Journals and conferences 
-2.5. Schools and workshops 
-2.6. Education
-3. Technical topics
-3.1. Purity 
-3.2. Currying 
-3.3. Monads 
-3.4. Parsers 
-3.5. Strictness 
-3.6. Performance 
-3.7. Applications
-4. Other resources
-4.1. Web pages 
-4.2. Research groups 
-4.3. Newsgroups 
-4.4. Bibliographies 
-4.5. Translators
-5. Languages
-5.1. ASpecT 
-5.2. Caml 
-5.3. Clean 
-5.4. Erlang 
-5.5. FP 
-5.6. Gofer 
-5.7. Haskell 
-5.8. Hope 
-5.9. Hugs 
-5.10. Id 
-5.11. J 
-5.12. Miranda 
-5.13. Mercury 
-5.14. ML 
-5.15. NESL 
-5.16. OPAL 
-5.17. Oz 
-5.18. Pizza 
-5.19. Scheme 
-5.20. Sisal
+元文書は2002年から更新されておらず、その上、その時点でも資料については古い物が多い
+という問題があるのですが、関数型言語に関する基礎的な知識に関する情報はコンパクトにまとまっており、
+2015年の現在でも初学者一読する価値のある文書だと言えます。この翻訳では以下の方針で訳出を行います:
+
+* 基本的に原文書を忠実に翻訳していくが、
+* 日本語での良資料が存在する場合は付記に勤める
+* 古い言語実装などの情報は敢えて訳出しない
+* 新登場した言語実装などについてのは情報を追加する
+
+-----
+
+# 関数型言語FAQ
+
+編: [Graham Hutton](http://www.cs.nott.ac.uk/~gmh), ノッティンガム大学
+
+バージョン: 2002/11 (この文書はこれ以降、アップデートされていません)
 
 ## この文書について
 
-Comp.lang.functional は関数型言語に関するデザイン、応用、理論的基礎、実装を含めた
+[Comp.lang.functional](news:comp.lang.functional)
+は関数型言語に関するデザイン、応用、理論的基礎、実装を含めた
 全ての事に関する議論を行う管理者のいない [usetnet ニュース](http://ja.wikipedia.org/wiki/%E3%83%8D%E3%83%83%E3%83%88%E3%83%8B%E3%83%A5%E3%83%BC%E3%82%B9)グループである。
 このグループでの議論は(他のグループの記録と共に)次のサイトに保存されている:
 
@@ -87,90 +60,133 @@ Comp.lang.functional は関数型言語に関するデザイン、応用、理�
 
 ### 関数型言語
 
-What is a "functional programming language"?
+「関数型言語」とはなんぞや？
+
+
+「関数型言語」を構成する物は正確にはなんなのかという定義は、関数型プログラミングコミュニティの内部でさえ意見がわかれている。しかしながら、comp.lang.functional で議論されているプログラミング言語達を代表する、広く使われている定義は次のようなものである:
 
 Opinions differ, even within the functional programming community, on the precise definition of what constitutes a functional programming language. However, here is a definition that, broadly speaking, represents the kind of languages that are discussed in comp.lang.functional:
 
+関数型プログラミングとは、コマンドの実行よりも、式の評価を強調するプログラミングスタイルである。
+式とは関数を使って基本的な値を組合せ得られる。 <!-- CR jfuruse: だめ -->
+関数型言語とはこの関数的なプログラミングをサポートし、推奨するプログラミング言語である。
+
 Functional programming is a style of programming that emphasizes the evaluation of expressions, rather than execution of commands. The expressions in these language are formed by using functions to combine basic values. A functional language is a language that supports and encourages programming in a functional style.
+
+例えば、1 から 10 までの整数を足し合せる計算を考える。C のような手続き型言語では、
+これは簡単なループを使って、加算？変数 `total` とカウンター変数 `i` を更新する繰り返しとして
+実装されることだろう:
+
 For example, consider the task of calculating the sum of the integers from 1 to 10. In an imperative language such as C, this might be expressed using a simple loop, repeatedly updating the values held in an accumulator variable total and a counter variable i:
 
+``` C
+// C のような言語
 total = 0;
 for (i=1; i<=10; ++i)
    total += i;
+```
+
+一方、関数型言語では、同じプログラムを変数への代入を一切行わずに書く。例えば、 Haskell では、 1 から 10 を足すという式をそのまま評価する事で結果が得られる:
+
 In a functional language, the same program would be expressed without any variable updates. For example, in Haskell, the result can be calculated by evaluating the expression:
 
+``` Haskell
 sum [1..10]
-Here, [1..10] is an expression that represents the list of integers from 1 to 10, while sum is a function that can be used to calculate the sum of an arbitrary list of values.
+```
+
+ここで `[1..10]` とは 1 から 10 までの整数のリストを意味する式で、`sum` はリスト中の値の合計を計算する関数である。
+
+Here, `[1..10]` is an expression that represents the list of integers from 1 to 10, while sum is a function that can be used to calculate the sum of an arbitrary list of values.
+
+同じアイデアは SML や Scheme の様な(正格)な関数型言語でも使える。が、それは再帰的に書かれたループとして表現される事が表される事が多い。ただし、ここでも変数の値を更新するということは行われていないことに注意してほしい:
 
 The same idea could also be used in (strict) functional languages such as SML or Scheme, but it is more common to find such programs written with an explicit loop, often expressed recursively. Nevertheless, there is still no need to update the values of the variables involved:
 
 SML:
+``` SML
 let fun sum i tot = if i=0 then tot else sum (i-1) (tot+i)
 in sum 10 0
 end
+```
+
 Scheme:
+``` Scheme
 (define sum
    (lambda (from total)
        (if (= 0 from)
            total
            (sum (- from 1) (+ total from)))))
 (sum 10 0)
+```
+
+手続き型言語で関数型スタイルのプログラムを書くことはしばしば可能であるし、その逆もありうる。
+ある特定のプログラミング言語が関数型か、どうか、というのは結局の所、好み<!-- CR jfuruse: ? -->の問題である。
+
 It is often possible to write functional-style programs in an imperative language, and vice versa. It is then a matter of opinion whether a particular language can be described as functional or not.
 
-
-2.2. History and motivation
+### 2.2. History and motivation
 
 Where can I find out more about the history and motivation for functional programming?
 
 Here are two useful references:
 
 "Conception, Evolution, and Application of Functional Programming Languages", Paul Hudak, ACM Computing Surveys, Volume 21, Number 3, pp.359-411, 1989.
+
 "Why functional programming matters", John Hughes, The Computer Journal, Volume 32, Number 2, April 1989. Available on the web from:
 http://www.cs.chalmers.se/~rjmh/Papers/whyfp.html.
 
-2.3. Textbooks
+### 2.3. Textbooks
 
 Are there any textbooks about functional programming?
 
 Yes, here are a selection:
 
-Programming:
+#### Programming:
 
 "Introduction to functional programming using Haskell", 2nd edition, Richard Bird, Prentice Hall Europe, 1998. ISBN 0-13-484346-0.
+
 "The Haskell school of expression: Learning functional programming through multimedia", Paul Hudak, Cambridge University Press, 2000. ISBN 0-521-64338-4. Further information is available on the web from:
 http://haskell.org/soe.
+
 "Haskell: The craft of functional programming", 2nd edition, Simon Thompson, Addison-Wesley, 1999. ISBN 0-201-34275-8. Further information is available on the web from:
 http://www.cs.ukc.ac.uk/people/staff/sjt/craft2e.
+
 "ML for the working programmer", 2nd Edition, L.C. Paulson, Cambridge University Press, 1996. ISBN 0-521-56543-X. Further information is available on the web from:
 http://www.cl.cam.ac.uk/users/lcp/MLbook/.
-Algorithms and data structures:
+
+#### Algorithms and data structures:
 
 "Purely functional data structures", Chris Okasaki, Cambridge University Press, 1998. ISBN 0-521-63124-6.
+
 "Algorithms: A functional programming approach", Fethi Rabhi and Guy Lapalme, Addison-Wesley, 1999. ISBN 0-201-59604-0. Further information is available on the web from:
 http://www.iro.umontreal.ca/~lapalme/Algorithms-functional.html.
-Implementation:
+
+#### Implementation:
 
 "The implementation of functional programming languages", Simon Peyton Jones, Prentice Hall, 1987. ISBN 0-13-453333-X.
+
 "Compiling with continuations", Andrew Appel, Cambridge University Press, 1992. ISBN 0-521-41695-7. Further information is available on the web from:
 http://www.cup.org/Titles/416/0521416957.html.
+
 There are several other textbooks available, particularly in the programming and implementation categories. A comparison of a number of functional programming textbooks is made in the following article:
 
 "Comparative review of functional programming textbooks (Bailey, Bird and Wadler, Holyer, Paulson, Reade, Sokoloski, Wikstrom)", Simon Thompson, Computing Reviews, May 1992 (CR number 9205-0262).
 
-2.4. Journals and conferences
+### 2.4. Journals and conferences
 
 Are there any journals and conferences about functional programming?
 
 Yes, here are a selection:
 
-Journals:
+#### Journals:
 
 The Journal of Functional Programming (JFP), published by Cambridge University Press. Further information is available on the web from:
 http://www.dcs.gla.ac.uk/jfp/.
 The Journal of Functional and Logic Programming (JFLP), an electronic journal published by MIT Press, and available on the web from:
 http://www.cs.tu-berlin.de/journal/jflp/.
 Lisp and Symbolic Computation, published by Kluwer.
-Conferences:
+
+#### Conferences:
 
 The International Conference on Functional Programming (ICFP). This conference combines and replaces the earlier conferences on Lisp and Functional Programming (LFP), and Functional Programming Languages and Computer Architecture (FPCA). Further information about the next ICFP conference (October 2002 at the time of writing) is available on the web from:
 http://icfp2002.cs.brown.edu/.
@@ -185,45 +201,57 @@ Most of these conferences have proceedings published by the ACM press, or in the
 In addition to the above, Philip Wadler edits a column on functional programming for the Formal Aspects of Computer Science Newsletter, which is published by the British Computing Society Formal Aspects of Computing group and Formal Methods Europe.
 
 
-2.5. Schools and workshops
+### 2.5. Schools and workshops
 
 Are there any schools and workshops on functional programming?
 
 Yes, here are a selection:
 
-Schools:
+#### Schools:
 
 Summer School and Workshop on Advanced Functional Programming, August 19-24, 2002, Oxford, England. Further information is available on the web from:
 http://www.functional-programming.org/afp/.
+
 The Third International Summer School on Advanced Functional Programming Techniques, September 12-19, 1998, Braga, Portugal. Further information is available on the web from:
 http://www.di.uminho.pt/~afp.
+
 Spring School on Advanced Functional Programming Techniques, May 24-31, 1995, Baastad, Sweden. The proceedings of the school were published in the Springer Verlag LNCS (Lecture Notes in Computer Science) series, number 925.
 The Second International Summer School on Advanced Functional Programming Techniques, August 25-30, 1996, Washington, USA. The proceedings of the school were published in the Springer Verlag LNCS (Lecture Notes in Computer Science) series, number 1129. Further information is available on the web from:
 http://www.cse.ogi.edu/PacSoft/summerschool96.html.
-Workshops:
+
+#### Workshops:
 
 Haskell Workshop, September 2, 2001, Florence, Italy. Held in conjunction with PLI 2001. Further information is available on the web from:
 http://www.cs.uu.nl/people/ralf/hw2001.html
+
 Haskell Workshop, September 17, 2000, Montreal, Canada. Held in conjunction with PLI 2000. Further information is available on the web from:
 http://www.cs.nott.ac.uk/~gmh/hw00.html
+
 Third Haskell Workshop, October 1, 1999, Paris, France. Held in conjunction with ICFP'99. Further information is available on the web from:
 http://www.haskell.org/HaskellWorkshop.html
+
 Workshop on Algorithmic Aspects of Advanced Programming Languages, September 29-30, 1999, Paris, France. Further information is available on the web from:
 http://www.cs.columbia.edu/~cdo/waaapl.html.
+
 1st Scottish Functional Programming Workshop, August 29-September 1, 1999, Stirling, Scotland. Further information is available on the web from:
 http://www.cee.hw.ac.uk/~gjm/sfp/.
+
 From 1988 to 1998 the Glasgow functional programming group organised a yearly workshop in Scotland. Further information is available on the web from:
 http://www.dcs.gla.ac.uk/fp/workshops/.
+
 The 9th International Workshop on the Implementation of Functional Languages, Sept 10-12, 1997, St. Andrews, Scotland. Further information is available on the web from:
 http://www.dcs.st-and.ac.uk/~ifl97.
+
 The Haskell Workshop, June 7, 1997, Amsterdam, The Netherlands. Held is conjunction with ICFP'97. Further information is available on the web from:
 http://www.cse.ogi.edu/~jl/ACM/Haskell.html.
+
 The 2nd Fuji International Workshop on Functional and Logic Programming, November 1-4, 1996, Shonan Village, Japan. Further information is available on the web from:
 http://www.kurims.kyoto-u.ac.jp/~ohori/fuji96.html.
+
 The 1st Workshop on Functional Programming in Argentina, September 12, 1996, Buenos Aires, Argentina. Further information is available on the web from:
 http://www-lifia.info.unlp.edu.ar/~lambda/first/english/.
 
-2.6. Education
+### 2.6. Education
 
 Are functional programming languages useful in education?
 
@@ -231,26 +259,60 @@ Functional languages are gathering momentum in education because they facilitate
 
 http://www.cs.kun.nl/fple/.
 
-3. Technical topics
+## 3. 技術的側面 (Technical topics)
+
+このセクションでは関数型言語に関する技術的な疑問の幾つかに簡単に答え、関係する資料やインターネット情報を紹介する。
 
 This section gives brief answers to a number of technical questions concerning functional programming languages, and some pointers to relevant literature and internet resources.
 
 
-3.1. Purity
+### 3.1. 純粋性 (Purity)
+
+「純粋関数型」言語とはなんぞや？
 
 What is a "purely functional" programming language?
 
+この問は関数型プログラミングコミュニティの中でもしばらく議論になっていた。
+現在は、 Haskell や Miranda のような言語が「純粋関数的」であり、
+SML や Scheme はそうではない、ということで大体の合意が取れている。
+しかしながら、この区別には正確な技術的動機に関して幾つかの細かい意見の相違がある。
+<!-- CR jfuruse: 多分、理由付がテクニカルに違う説明がいくつかある -->
+提案されている一つの定義はこのようなものである:
+
 This question has been the subject of some debate in the functional programming community. It is widely agreed that languages such as Haskell and Miranda are "purely functional", while SML and Scheme are not. However, there are some small differences of opinion about the precise technical motivation for this distinction. One definition that has been suggested is as follows:
 
+「純粋関数型」という用語は、全ての計算が関数適用によって行われるプログラミング言語を指して良く使われる。
+それに対し、Scheme や Standard ML (SML) <!-- 名称不統一 --> のような言語はほぼ
+関数型ではあるが、"副作用"(式の評価が終了しても後の環境に影響を与えるような計算)も持っている。 
+
 The term "purely functional" is often used to describe languages that perform all their computations via function application. This is in contrast to languages, such as Scheme and Standard ML, that are predominantly functional but also allow `side effects' (computational effects caused by expression evaluation that persist after the evaluation is completed).
+
+しばしば、「純粋関数的」という用語は
+広い意味で
+(関数の必須性質が保存されるとうい事実を以て)
+計算作用(副作用？<!-- 多分そう言ってはいけない -->)を持つが、"関数"の概念を変えてしまわない
+プログラミング言語にも使われる。
+式の評価は"仕事"を生成するが、その仕事の計算作用を引き起す実際の実行は別れて行なわれる。
+評価と実行のフェーズは
+評価フェーズが式や関数の基本性質(参照透明性のこと)を汚すことがないように分られている。
+例えば Haskell の入出力はこの種のものである。
+
 Sometimes, the term "purely functional" is also used in a broader sense to mean languages that might incorporate computational effects, but without altering the notion of `function' (as evidenced by the fact that the essential properties of functions are preserved.) Typically, the evaluation of an expression can yield a `task', which is then executed separately to cause computational effects. The evaluation and execution phases are separated in such a way that the evaluation phase does not compromise the standard properties of expressions and functions. The input/output mechanisms of Haskell, for example, are of this kind.
 
 See also:
 "What is a purely functional language", Amr Sabry, Journal of Functional Programming, 8(1):1-22, Cambridge University Press, January 1998.
 
-3.2. Currying
+### 3.2. カリー化 (Currying)
+
+「カリー化」とはなんぞや？そしてその由来は？
 
 What is "currying", and where does it come from?
+
+カリー化は関数に関する数学研究にそのルーツがある。
+1893年に[フレーゲ](http://ja.wikipedia.org/wiki/%E3%82%B4%E3%83%83%E3%83%88%E3%83%AD%E3%83%BC%E3%83%97%E3%83%BB%E3%83%95%E3%83%AC%E3%83%BC%E3%82%B2)
+は関数を考える際には一引数のものだけを考えても一般性は損なわれない事を発見した。<!-- CR jfuruse: 硬い -->
+たとえば、任意の二引数関数 f(x,y) に対し、 f'(x) という関数を返す一引数の関数があり、その結果に引数 y を適用すると (f'(x))(y) = f(x,y) となるような物が存在する。<!-- CR jfuruse: 日本語下手 -->
+これは、(A x B -> C) と (A -> (B -> C)) という集合が同相である事と一致する (x は直積、 -> は関数空間を表す)。関数型プログラミングでは、関数適用は並置され( f(x) と書かずに f x と書くこと)左結合であると仮定すると、上の等式は `f' x y = f(x, y)` となる。
 
 Currying has its origins in the mathematical study of functions. It was observed by Frege in 1893 that it suffices to restrict attention to functions of a single argument. For example, for any two parameter function f(x,y), there is a one parameter function f' such that f'(x) is a function that can be applied to y to give (f'(x))(y) = f (x,y). This corresponds to the well known fact that the sets (AxB -> C) and (A -> (B -> C)) are isomorphic, where "x" is cartesian product and "->" is function space. In functional programming, function application is denoted by juxtaposition, and assumed to associate to the left, so that the equation above becomes f' x y = f(x,y).
 
@@ -266,7 +328,7 @@ For further reading, see:
 "Ueber die Bausteine der mathematischen Logik", Moses Sch\"onfinkel, Mathematische Annalen, 92, 1924. An English translation, "On the building blocks of mathematical logic", appears in "From Frege to G\"odel", Jean van Heijenoort, Harvard University Press, Cambridge, 1967.
 "Combinatory logic", Haskell B. Curry and Robert Feys, North-Holland, 1958. This work also contains many references to earlier work by Curry, Church, and others.
 
-3.3. Monads
+### 3.3. Monads
 
 What is a "monad", and what are they used for?
 
@@ -281,7 +343,7 @@ http://www.cs.bell-labs.com/~wadler/topics/monads.html#imperative
 "How to declare an imperative", Philip Wadler, ACM Computing Surveys, to appear. Available on the web from:
 http://www.cs.bell-labs.com/~wadler/topics/monads.html#monadsdeclare
 
-3.4. Parsers
+### 3.4. Parsers
 
 How can I write a "parser" in a functional programming language?
 
@@ -301,7 +363,7 @@ Using combinator parsing. Parsers are represented by functions and combined with
 "Higher-order functions for parsing", Graham Hutton, Journal of Functional Programming, Volume 2, Number 3, July 1992. Available on the web from:
 http://www.cs.nott.ac.uk/~gmh/bib.html#parsing.
 
-3.5. Strictness
+### 3.5. Strictness
 
 What does it mean to say that a functional programming language is "strict" or "non-strict"?
 
@@ -312,7 +374,7 @@ In a non-strict language, the arguments to a function are not evaluated until th
 There is much debate in the functional programming community about the relative merits of strict and non-strict languages. It is possible, however, to support a mixture of these two approaches; for example, some versions of the functional language Hope do this.
 
 
-3.6. Performance
+### 3.6. Performance
 
 What is the performance of functional programs like?
 
@@ -332,7 +394,7 @@ Experiments with a heavily optimising compiler for Sisal, a strict functional la
 Postscript versions of a number of papers from the 1995 conference on High Performance Functional Computing (HPFC) are available on the web from:
 ftp://sisal.llnl.gov/pub/hpfc/index.html.
 
-3.7. Applications
+### 3.7. Applications
 
 Where can I find out about applications of functional programming?
 
@@ -345,12 +407,12 @@ Further details are available on the web from:
 
 http://www.cs.bell-labs.com/~wadler/realworld/.
 
-4. Other resources
+## 4. Other resources
 
 This section gives some pointers to other internet resources on functional programming.
 
 
-4.1. Web pages
+### 4.1. Web pages
 
 Philip Wadler's guide to functional programming on the web:
 http://cm.bell-labs.com/cm/cs/who/wadler/guide.html.
@@ -363,7 +425,7 @@ http://carol.wins.uva.nl/~jon/func.html.
 Claus Reinke's functional programming bookmarks:
 http://website.lineone.net/~claus_reinke/FP.html.
 
-4.2. Research groups
+### 4.2. Research groups
 
 The Chalmers functional programming group:
 http://www.md.chalmers.se/Cs/Research/Functional/.
@@ -380,7 +442,7 @@ http://www.cs.yale.edu/HTML/YALE/CS/haskell/yale-fp.html.
 The York functional programming group:
 http://www.cs.york.ac.uk/fp/.
 
-4.3. Newsgroups
+### 4.3. Newsgroups
 
 For discussion about ML:
 comp.lang.ml.
@@ -391,7 +453,7 @@ comp.lang.lisp.
 For discussion about APL, J, etc:
 comp.lang.apl.
 
-4.4. Bibliographies
+### 4.4. Bibliographies
 
 Mike Joy's bibliography on functional programming languages, in refer(1) format:
 Host:	ftp.dcs.warwick.ac.uk;
@@ -405,7 +467,7 @@ Directory:	 /pub/yale-fp/papers.
 Wolfgang Schreiner's annotated bibliography of over 350 publications on parallel functional programming (most with abstracts), available on the web from:
 http://www.risc.uni-linz.ac.at/people/schreine/papers/pfpbib.ps.gz.
 
-4.5. Translators
+### 4.5. Translators
 
 The smugweb system for typesetting Haskell code in TeX, available from:
 http://www5.informatik.uni-jena.de/~joe/smugweb.html.
@@ -415,7 +477,7 @@ Denis Howe's translators from Miranda(TM) to LML and Haskell, available from:
 http://wombat.doc.ic.ac.uk/pub/mira2lml;
 http://wombat.doc.ic.ac.uk/pub/mira2hs.
 
-5. Languages
+## 5. Languages
 
 This section gives a brief overview of a number of programming languages that support aspects of the functional paradigm, and some pointers to relevant literature and internet resources. The table below classifies the languages into strict/non-strict and sequential/concurrent, and may be useful when searching for suitable languages for particular applications. Some of the languages have multiple versions with different classifications (see the language overviews for further details), but for simplicity only the most common version of each language is considered in the table.
 
@@ -439,7 +501,7 @@ Hugs
 Miranda	Clean 
 Id
 
-5.1. ASpecT
+### 5.1. ASpecT
 
 ASpecT is a strict functional language, developed at the University of Bremen, originally intended as an attempt to provide an implementation for (a subset of) Algebraic Specifications of Abstract Datatypes. The system was designed to be as user-friendly as possible, including overloading facilities and a source-level debugger. For reasons of efficiency, the system uses call-by-value evaluation and reference counting memory management.
 
@@ -451,7 +513,7 @@ The most important application of ASpecT to date is the interactive graph visual
 
 http://www.Informatik.Uni-Bremen.DE/~davinci.
 
-5.2. Caml
+### 5.2. Caml
 
 Caml is a dialect of the ML language developed at INRIA that does not comply to the Standard, but actually tries to go beyond the Standard, in particular in the areas of separate compilation, modules, and objects. Two implementations of Caml are available:
 
@@ -472,7 +534,7 @@ http://pauillac.inria.fr/caml/index-eng.html (English);
 http://pauillac.inria.fr/caml/index-fra.html (French).
 
 
-5.3. Clean
+### 5.3. Clean
 
 The Concurrent Clean system is a programming environment for the functional language Concurrent Clean, developed at the University of Nijmegen in The Netherlands. The system is one of the fastest implementations of functional languages available at the time of writing. Through the use of uniqueness typing, it is possible to write purely functional interactive programs, including windows, menus, dialogs, etc. It is also possible to develop real-life applications that interface with non-functional systems. With version 1.0, the language emerged from an intermediate language to a proper programming language. Features provided by the language include:
 
@@ -496,7 +558,7 @@ A book describing the background and implementation of Concurrent Clean is also 
 
 "Functional programming and parallel graph rewriting", Rinus Plasmeijer and Marko van Eekelen, Addison Wesley, International Computer Science Series. ISBN 0-201-41663-8
 
-5.4. Erlang
+### 5.4. Erlang
 
 Erlang is a dynamically typed concurrent functional programming language for large industrial real-time systems. Features of Erlang include:
 
@@ -526,7 +588,7 @@ See also:
 
 "Concurrent programming in Erlang" (second edition), J. Armstrong, M. Williams, R. Virding, and Claes Wikström, Prentice Hall, 1996. ISBN 0-13-508301-X.
 
-5.5. FP
+### 5.5. FP
 
 FP is a side-effect free, combinator style language, described in:
 
@@ -540,7 +602,7 @@ The Illinois FP system supports a modified version of FP that has a more Algol-l
 
 "The Illinois functional programming interpreter", Arch D. Robison, Proceedings of the SIGPLAN '87 Symposium on Interpreters and Interpretive Techniques, SIGPLAN notices, Volume 22, Number 7, July 1987.
 
-5.6. Gofer
+### 5.6. Gofer
 
 The Gofer system provides an interpreter for a small language based closely on the current version of the Haskell report. In particular, Gofer supports lazy evaluation, higher-order functions, polymorphic typing, pattern-matching, support for overloading, etc.
 
@@ -555,7 +617,7 @@ Directory:	 /pub/haskell/gofer/macgofer.
 Please note the spelling of Gofer, derived from the notion that functional languages are GO(od) F(or) E(quational) R(easoning). This is not to be confused with `Gopher', the widely used internet distributed information delivery system.
 
 
-5.7. Haskell
+### 5.7. Haskell
 
 In the mid-1980s, there was no "standard" non-strict, purely-functional programming language. A language-design committee was set up in 1987, and the Haskell language is the result. At the time of writing, Haskell 98 is the latest version of the language. Further information about Haskell, including the latest version of the Haskell report, is available on the web from:
 
@@ -577,30 +639,30 @@ Directory:	 /pub/computing/programming/languages/haskell.
 You can join the Haskell mailing list by emailing majordomo@dcs.gla.ac.uk, with a message body of the form: subscribe haskell Forename Surname <email@address>.
 
 
-5.8. Hope
+### 5.8. Hope
 
 Hope is a small polymorphically-typed functional language, and was the first language to use call-by-pattern. Hope was originally strict, but there are versions with lazy lists, or with lazy constructors but strict functions. Further information is available on the web from:
 
 http://www.soi.city.ac.uk/~ross/Hope/.
 
-5.9. Hugs
+### 5.9. Hugs
 
 Hugs, the Haskell User's Gofer System, is an interpreted implementation of Haskell with an interactive development environment much like that of Gofer. Further information about Hugs is available on the web from:
 
 http://www.haskell.org/hugs/
 
-5.10. Id
+### 5.10. Id
 
 Id is a dataflow programming language, whose core is a non-strict functional language with implicit parallelism. It has the usual features of many modern functional programming languages, including a Hindley/Milner type inference system, algebraic types and definitions with clauses and pattern matching, and list comprehensions.
 
 
-5.11. J
+### 5.11. J
 
 J was designed and developed by Ken Iverson and Roger Hui. It is similar to the language APL, departing from APL in using using the ASCII alphabet exclusively, but employing a spelling scheme that retains the advantages of the special alphabet required by APL. It has added features and control structures that extend its power beyond standard APL. Although it can be used as a conventional procedural programming language, it can also be used as a pure functional programming language. Further information about J is available on the web from:
 
 http://www.jsoftware.com.
 
-5.12. Miranda
+### 5.12. Miranda
 
 Miranda was designed in 1985-6 by David Turner with the aim of providing a standard non-strict purely functional language, and is described in the following articles:
 
@@ -616,7 +678,7 @@ http://miranda.org.uk
 Miranda is not in the public domain but is free for personal and educational use.
 
 
-5.13. Mercury
+### 5.13. Mercury
 
 Mercury is a logic/functional programming language, which combines the clarity and expressiveness of declarative programming with advanced static analysis and error detection facilities. It has a strong type system, a module system (allowing separate compilation), a mode system, algebraic data types, parametric polymorphism, support for higher-order programming, and a determinism system --- all of which are aimed at both reducing programming errors and providing useful information for programmers and compilers.
 
@@ -626,7 +688,7 @@ Further information about Mercury is available on the web from:
 
 http://www.cs.mu.oz.au/mercury.
 
-5.14. ML
+### 5.14. ML
 
 ML stands for meta-language, and is a family of advanced programming languages with (usually) functional control structures, strict semantics, a strict polymorphic type system, and parameterized modules. It includes Standard ML, Lazy ML, CAML, CAML Light, and various research languages. Implementations are available on many platforms, including PCs, mainframes, most models of workstation, multi-processors and supercomputers. ML has many thousands of users, and is taught to undergraduates at many universities.
 
@@ -646,7 +708,7 @@ There is now a revised version of Standard ML, sometimes referred to as "Standar
 
 http://cm.bell-labs.com/cm/cs/what/smlnj/sml97.html.
 
-5.15. NESL
+### 5.15. NESL
 
 NESL is a fine-grained, functional, nested data-parallel language, loosly based on ML. It includes a built-in parallel data-type, sequences, and parallel operations on sequences (the element type of a sequence can be any type, not just scalars). It is based on eager evaluation, and supports polymorphism, type inference and a limited use of higher-order functions. Currently, it does not have support for modules and its datatype definition is limited. Except for I/O and some system utilities it is purely functional (it does not support reference cells or call/cc).
 
@@ -664,7 +726,7 @@ Directory:	 nesl.
 You can join to the NESL mailing list by emailing nesl-request@cs.cmu.edu.
 
 
-5.16. OPAL
+### 5.16. OPAL
 
 The language OPAL has been designed as a testbed for the development of functional programs. Opal molds concepts from Algebraic Specification and Functional Programming, which shall favor the formal development of large production-quality software that is written in a purely functional style. The core of OPAL is a strongly typed, higher-order, strict applicative language that belongs to the tradition of Hope and ML. The algebraic flavour of OPAL shows up in the syntactical appearance and in the preference of parameterization to polymorphism.
 
@@ -675,7 +737,7 @@ Further information about OPAL is available by ftp from:
 Host:	ftp.cs.tu-berlin.de;
 Directory:	 /pub/local/uebb/.
 
-5.17. Oz
+### 5.17. Oz
 
 Oz is a concurrent constraint programming language designed for applications that require complex symbolic computations, organization into multiple agents, and soft real-time control. It is based on a new computation model providing a uniform foundation for higher-order functional programming, constraint logic programming, and concurrent objects with multiple inheritance. From functional languages Oz inherits full compositionality, and from logic languages Oz inherits logic variables and constraints (including feature and finite domain constraints.) Search in Oz is encapsulated (no backtracking) and includes one, best and all solution strategies.
 
@@ -691,7 +753,7 @@ Directory:	 /pub/oz.
 Specific questions on Oz may be emailed oz@ps.uni-sb.de. You can join the Oz users mailing list by emailing oz-users-request@ps.uni-sb.de.
 
 
-5.18. Pizza
+### 5.18. Pizza
 
 Pizza is a strict superset of Java that incorporates three ideas from functional programming:
 
@@ -717,7 +779,7 @@ ftp://ftp.eecs.tulane.edu/pub/maraist/pizza/welcome.html.
 Pizza has received a `cool' award from Gamelan ( http://www-c.gamelan.com/.)
 
 
-5.19. Scheme
+### 5.19. Scheme
 
 Scheme is a dialect of Lisp that stresses conceptual elegance and simplicity. It is specified in R4RS and IEEE standard P1178. Scheme is much smaller than Common Lisp; the specification is about 50 pages. Scheme is often used in computer science curricula and programming language research, due to its ability to simply represent many programming abstractions.
 
@@ -729,7 +791,7 @@ There is an unmoderated usenet newsgroup, comp.lang.scheme, for the discussion o
 Host:	ftp.think.com;
 Directory:	 /public/think/lisp/.
 
-5.20. Sisal
+### 5.20. Sisal
 
 Sisal (Streams and Iteration in a Single Assignment Language) is a functional language designed with several goals in mind: to support clear, efficient expression of scientific programs; to free application programmers from details irrelevant to their endeavors; and, to allow automatic detection and exploitation of the parallelism expressed in source programs.
 
@@ -742,4 +804,7 @@ The Sisal language currently exists for several shared memory and vector systems
 Further information about Sisal is available on the web from:
 
 http://www.llnl.gov/sisal/SisalHomePage.html.
+
+-----
+
 The original version of this Frequently Asked Questions list (FAQ) was compiled and edited by Mark P. Jones. All questions, comments, corrections, and suggestions regarding this document should be addressed to the current editor, Graham Hutton.
