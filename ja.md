@@ -316,30 +316,57 @@ What is "currying", and where does it come from?
 
 Currying has its origins in the mathematical study of functions. It was observed by Frege in 1893 that it suffices to restrict attention to functions of a single argument. For example, for any two parameter function f(x,y), there is a one parameter function f' such that f'(x) is a function that can be applied to y to give (f'(x))(y) = f (x,y). This corresponds to the well known fact that the sets (AxB -> C) and (A -> (B -> C)) are isomorphic, where "x" is cartesian product and "->" is function space. In functional programming, function application is denoted by juxtaposition, and assumed to associate to the left, so that the equation above becomes f' x y = f(x,y).
 
+明らかにフレーゲはそれ以上この考えを前進させなかった。これはその後独立して[ショーンフィンケル](http://en.wikipedia.org/wiki/Moses_Sch%C3%B6nfinkel)によって、
+関数構造と関係のある<!--?-->全ての関数は K と S という２つの基本コンビネータによって表すことができるという
+結果と共に再発見される。その十年後、このアイデアは[ハスケル・カリー](http://ja.wikipedia.org/wiki/%E3%83%8F%E3%82%B9%E3%82%B1%E3%83%AB%E3%83%BB%E3%82%AB%E3%83%AA%E3%83%BC)によって発明されるこのコンビネータ論理に発展した。「カリー化」の名は彼の功績によるものである。上の例の関数 `f'` は関数 `f` を「カリー化」したものである。関数型プログラミングの観点からは、カリー化は次の関数で表される:
+
 Apparently, Frege did not pursue the idea further. It was rediscovered independently by Schoenfinkel, together with the result that all functions having to do with the structure of functions can be built up out of only two basic combinators, K and S. About a decade later, this sparked off the subject of combinatory logic, invented by Haskell Curry. The term "currying" honours him; the function f' in the example above is called the "curried" form of the function f. From a functional programming perspective, currying can be described by a function:
 
+```
 curry : ((a,b) -> c) -> (a -> b -> c)
+```
+
+この逆操作は、当然だが「逆カリー化」(uncurrying) <!-- 訳語不詳 --> と呼ばれる:
+
+
 The inverse operation is, unsurprisingly, refered to as uncurrying:
 
+```
 uncurry : (a -> b -> c) -> ((a,b) -> c)
+```
+
+より詳しくは、次を参照のこと:
+
 For further reading, see:
 
 "Highlights of the history of the lambda-calculus", J. Barkley Rosser, ACM Lisp and Functional Programming, 1982.
+
 "Ueber die Bausteine der mathematischen Logik", Moses Sch\"onfinkel, Mathematische Annalen, 92, 1924. An English translation, "On the building blocks of mathematical logic", appears in "From Frege to G\"odel", Jean van Heijenoort, Harvard University Press, Cambridge, 1967.
+
 "Combinatory logic", Haskell B. Curry and Robert Feys, North-Holland, 1958. This work also contains many references to earlier work by Curry, Church, and others.
 
-### 3.3. Monads
+### 3.3. モナド
+
+「モナド」とはなんぞや？そして何のためにあるのか？
 
 What is a "monad", and what are they used for?
+
+モナドの概念は圏論からきている。モナドの詳細は圏論の標準的な教科書であれば必ず載っている。
+関数型プログラミングでのモナドに対する関心の多くは、
+モナドが Haskell などの純粋関数型言語の多くの機能、例えば、入出力、状態、継続、例外など、を
+普遍的に記述できる以下に挙げる研究の成果によるものである:
 
 The concept of a monad comes from category theory; full details can be found in any standard textbook on the subject. Much of the interest in monads in functional programming is the result of recent papers that show how monads can be used to describe all kinds of different programming language features (for example, I/O, manipulation of state, continuations and exceptions) in purely functional languages such as Haskell:
 
 "Comprehending monads", Philip Wadler, Mathematical Structures in Computer Science, Special issue of selected papers from 6th Conference on Lisp and Functional Programming, 1992. Available on the web from:
 http://www.cs.bell-labs.com/~wadler/topics/monads.html#monads
+
 "The essence of functional programming", Philip Wadler, Invited talk, 19th Symposium on Principles of Programming Languages, ACM Press, Albuquerque, January 1992. Available on the web from:
 http://www.cs.bell-labs.com/~wadler/topics/monads.html#essence
+
 "Imperative functional programming", Simon Peyton Jones and Philip Wadler, 20th Symposium on Principles of Programming Languages, ACM Press, Charlotte, North Carolina, January 1993. Available on the web from:
 http://www.cs.bell-labs.com/~wadler/topics/monads.html#imperative
+
 "How to declare an imperative", Philip Wadler, ACM Computing Surveys, to appear. Available on the web from:
 http://www.cs.bell-labs.com/~wadler/topics/monads.html#monadsdeclare
 
