@@ -27,57 +27,54 @@
 
 ## この文書について
 
-[Comp.lang.functional](news:comp.lang.functional)
-は関数型言語に関するデザイン、応用、理論的基礎、実装を含めた
-全ての事に関する議論を行う管理者のいない [usetnet ニュース](http://ja.wikipedia.org/wiki/%E3%83%8D%E3%83%83%E3%83%88%E3%83%8B%E3%83%A5%E3%83%BC%E3%82%B9)グループである。
+[Usetnet ニュース](http://ja.wikipedia.org/wiki/%E3%83%8D%E3%83%83%E3%83%88%E3%83%8B%E3%83%A5%E3%83%BC%E3%82%B9)というインターネット上で広く議論を行うシステム上に [comp.lang.functional](news:comp.lang.functional) という"ニュースグループ"が存在する。
+これは、関数型言語に関するデザイン、応用、理論的基礎、実装を含めた全ての事に
+関する議論を行う管理者のいないグループである。
+
 このグループでの議論は(他のグループの記録と共に)次のサイトに保存されている:
 
-> http://www.dejanews.com/.
+http://www.dejanews.com/.
 
-この文書は comp.lang.functional の「良く聞かれる質問 (FAQ)」の一つであり、
-関数型言語に関して良く聞かれる疑問に対して簡単な回答、もしくは他情報源へのポインタや
-関係する文書、インターネット情報を紹介する。
+この文書、「関数型言語FAQ」は comp.lang.functional の「良く聞かれる質問集(FAQ)」
+の一つとして、関数型言語に関して良く聞かれる疑問に対する簡単な回答、他関連文書類(書籍、ネット情報)への
+ポインタを紹介する。
+
 この文書の最も新しいバージョンは、
 
-> http://www.cs.nott.ac.uk/~gmh/faq.html
+http://www.cs.nott.ac.uk/~gmh/faq.html
 
-から入手可能である。
+から入手可能である。(訳註:ただし2002年から更新されていない)
 
 この文書の多くの情報は公共の情報源、主に comp.lang.functional に投稿された記事、
 からとられている。そのような編集経緯から、この文書の作成に協力した事になる人々のリストは存在しない。
-この文書に書かれた意見はこれら個人の協力者の物であり、編集者や、他の関数型プログラミング
+この文書に書かれている意見はこれら個々人の協力者の物であり、編集者や、他の関数型プログラミング
 コミュニティメンバーの意見を代表するものではない場合もある。この文書の内容はできるだけ正しく、
 また最新であるように注意が払われているが、それはここで提供される情報の正しさを保証するものではない。
-あなたの問題指摘と協力が求められている!
+これを読んでいるあなた自身の問題指摘しや協力をお願いしたい。
 
-このFAQリストの初期のバージョンは Mark P. Jones によって編纂された。
+このFAQリストの初めのバージョンは Mark P. Jones によって編纂された。
 現在の版に対する全ての疑問、コメント、修正、提案は現在の編者である Graham Hutton に連絡されたい。
+
+日本語翻訳については、最後の編者である Graham Hutton からの許諾を取っているが、
+彼はその翻訳内容には関知していない。翻訳に関する問合せは Jun Furuse に連絡されたい。
 
 ## 一般的なトピック
 
-このセクションでは関数型プログラミングに対する一般的な疑問に簡単に答え、
-関連する書籍やネット情報を提供する。
+このセクションでは関数型プログラミングに対する一般的な疑問に簡単に答え、関連する書籍やネット情報を提供する。
 
 ### 関数型言語
 
-「関数型言語」とはなんぞや？
+> 「関数型言語」とはなんぞや？
 
+「関数型言語」を構成する物は正確にはなんなのか、これは関数型プログラミングコミュニティの中でさえ意見が別れていて、統一された定義はない。しかしながら、comp.lang.functional で議論されているプログラミング言語達の特徴を良く表す広く使われている定義は次のようなものである:
 
-「関数型言語」を構成する物は正確にはなんなのかという定義は、関数型プログラミングコミュニティの内部でさえ意見がわかれている。しかしながら、comp.lang.functional で議論されているプログラミング言語達を代表する、広く使われている定義は次のようなものである:
-
-Opinions differ, even within the functional programming community, on the precise definition of what constitutes a functional programming language. However, here is a definition that, broadly speaking, represents the kind of languages that are discussed in comp.lang.functional:
-
-関数型プログラミングとは、コマンドの実行よりも、式の評価を強調するプログラミングスタイルである。
-式とは関数を使って基本的な値を組合せ得られる。 <!-- CR jfuruse: だめ -->
-関数型言語とはこの関数的なプログラミングをサポートし、推奨するプログラミング言語である。
-
-Functional programming is a style of programming that emphasizes the evaluation of expressions, rather than execution of commands. The expressions in these language are formed by using functions to combine basic values. A functional language is a language that supports and encourages programming in a functional style.
+**関数型プログラミング**とは、コマンドの実行よりも、式の評価に重きを置くプログラミングスタイルである。
+関数型プログラムでは、基本的な値と関数を組合せることによって式そしてプログラムを構成していく。
+**関数型言語**とはこの関数型プログラミングをサポートし、推奨するプログラミング言語である。
 
 例えば、1 から 10 までの整数を足し合せる計算を考える。C のような手続き型言語では、
-これは簡単なループを使って、加算？変数 `total` とカウンター変数 `i` を更新する繰り返しとして
-実装されることだろう:
-
-For example, consider the task of calculating the sum of the integers from 1 to 10. In an imperative language such as C, this might be expressed using a simple loop, repeatedly updating the values held in an accumulator variable total and a counter variable i:
+これは簡単なループを使って、累算値を保持する変数 `total` とカウンター変数 `i` を更新する
+コマンドの繰り返しとして実装されることだろう:
 
 ``` C
 // C のような言語
@@ -86,9 +83,7 @@ for (i=1; i<=10; ++i)
    total += i;
 ```
 
-一方、関数型言語では、同じプログラムを変数への代入を一切行わずに書く。例えば、 Haskell では、 1 から 10 を足すという式をそのまま評価する事で結果が得られる:
-
-In a functional language, the same program would be expressed without any variable updates. For example, in Haskell, the result can be calculated by evaluating the expression:
+関数型言語では、同じプログラムを変数への代入を一切行わずに書くことができる。例えば Haskell では、 1 から 10 を足すという式をそのまま評価する事で結果が得られる:
 
 ``` Haskell
 sum [1..10]
@@ -96,11 +91,7 @@ sum [1..10]
 
 ここで `[1..10]` とは 1 から 10 までの整数のリストを意味する式で、`sum` はリスト中の値の合計を計算する関数である。
 
-Here, `[1..10]` is an expression that represents the list of integers from 1 to 10, while sum is a function that can be used to calculate the sum of an arbitrary list of values.
-
-同じアイデアは SML や Scheme の様な(正格)な関数型言語でも使える。が、それは再帰的に書かれたループとして表現される事が表される事が多い。ただし、ここでも変数の値を更新するということは行われていないことに注意してほしい:
-
-The same idea could also be used in (strict) functional languages such as SML or Scheme, but it is more common to find such programs written with an explicit loop, often expressed recursively. Nevertheless, there is still no need to update the values of the variables involved:
+同じアイデアは SML や Scheme の様な(正格<!-- CR jfuruse: link -->))な関数型言語でも使える。が、それは再帰的に書かれたループとして表現される事が表される事が多い。ただし、ここでも変数の値を更新するということは行われていないことに注意してほしい(訳註: Haskell の `sum` も再帰を使ったループとして実装されている):
 
 SML:
 ``` SML
@@ -119,14 +110,13 @@ Scheme:
 (sum 10 0)
 ```
 
-手続き型言語で関数型スタイルのプログラムを書くことはしばしば可能であるし、その逆もありうる。
-であるので、ある特定のプログラミング言語が関数型か、どうか、というのは結局の所、好み<!-- CR jfuruse: ? -->の問題である。
-
-It is often possible to write functional-style programs in an imperative language, and vice versa. It is then a matter of opinion whether a particular language can be described as functional or not.
+手続き型言語で関数型スタイルのプログラムを書くことはしばしば可能であるし、その逆、
+関数型言語で手続き型スタイルのプログラムを書くこともよくある。
+ある特定のプログラミング言語が関数型かどうか、というのは結局の所、主観の問題である。
 
 ### 2.2. History and motivation
 
-Where can I find out more about the history and motivation for functional programming?
+> Where can I find out more about the history and motivation for functional programming?
 
 Here are two useful references:
 
@@ -137,7 +127,7 @@ http://www.cs.chalmers.se/~rjmh/Papers/whyfp.html.
 
 ### 2.3. Textbooks
 
-Are there any textbooks about functional programming?
+> Are there any textbooks about functional programming?
 
 Yes, here are a selection:
 
@@ -174,7 +164,7 @@ There are several other textbooks available, particularly in the programming and
 
 ### 2.4. Journals and conferences
 
-Are there any journals and conferences about functional programming?
+> Are there any journals and conferences about functional programming?
 
 Yes, here are a selection:
 
@@ -207,7 +197,7 @@ In addition to the above, Philip Wadler edits a column on functional programming
 
 ### 2.5. Schools and workshops
 
-Are there any schools and workshops on functional programming?
+> Are there any schools and workshops on functional programming?
 
 Yes, here are a selection:
 
@@ -257,7 +247,7 @@ http://www-lifia.info.unlp.edu.ar/~lambda/first/english/.
 
 ### 2.6. Education
 
-Are functional programming languages useful in education?
+> Are functional programming languages useful in education?
 
 Functional languages are gathering momentum in education because they facilitate the expression of concepts and structures at a high level of abstraction. Many university computing science departments now make use of functional programming in their undergraduate courses; indeed, a number of departments teach a functional language as their first programming language. Further information about the use of functional programming languages in education (including links to relevant conferences and workshops) is available on the web from:
 
@@ -272,7 +262,7 @@ This section gives brief answers to a number of technical questions concerning f
 
 ### 3.1. 純粋性 (Purity)
 
-「純粋関数型」言語とはなんぞや？
+> 「純粋関数型」言語とはなんぞや？
 
 What is a "purely functional" programming language?
 
@@ -308,7 +298,7 @@ See also:
 
 ### 3.2. カリー化 (Currying)
 
-「カリー化」とはなんぞや？そしてその由来は？
+> 「カリー化」とはなんぞや？そしてその由来は？
 
 What is "currying", and where does it come from?
 
@@ -351,7 +341,7 @@ For further reading, see:
 
 ### 3.3. モナド
 
-「モナド」とはなんぞや？そして何のためにあるのか？
+> 「モナド」とはなんぞや？そして何のためにあるのか？
 
 What is a "monad", and what are they used for?
 
@@ -472,21 +462,27 @@ Experiments with a heavily optimising compiler for Sisal, a strict functional la
 Postscript versions of a number of papers from the 1995 conference on High Performance Functional Computing (HPFC) are available on the web from:
 ftp://sisal.llnl.gov/pub/hpfc/index.html.
 
-### 3.7. Applications
+### 3.7. 関数型言語の適用例
+
+> 関数型プログラミングの適用例を知るにはどうすればよいですか？
 
 Where can I find out about applications of functional programming?
 
-Here are a selection of places to look:
+関数型言語を使った関数型プログラミングの実世界での応用例、
+単なる関数型プログラミングの実験的実装などではなく、
+何か実世界の問題を解決するために関数型言語が使用された例のリストがネット上に公開、更新されている。
+
+http://homepages.inf.ed.ac.uk/wadler/realworld/ <!-- 確認済 -->
+
+また次の論文を参考にされたい:
+
+(訳註: 関数型言語で書かれた実用的プログラムは増える傾向にあり、
+元文書2002年からアップデートされていない。ここで紹介されている以下の文書は
+現状とは懸け離れていると思われる。)
 
 "Special issue on state-of-the-art applications of pure functional programming languages", edited by Pieter Hartel and Rinus Plasmeijer, Journal of Functional Programming, Volume 5, Number 3, July 1995.
 
 "Applications of functional programming", edited by Colin Runciman and David Wakeling, UCL Press, 1995. ISBN 1-85728-377-5.
-
-An online list of real-world applications of functional programming is maintained, which includes programs written in several different functional languages. The main criterion for being considered a real-world application is that the program was written primarily to perform some task, rather than to experiment with functional programming.
-
-Further details are available on the web from:
-
-http://www.cs.bell-labs.com/~wadler/realworld/.
 
 ## 4. Other resources
 
@@ -552,12 +548,15 @@ comp.lang.apl.
 Mike Joy's bibliography on functional programming languages, in refer(1) format:
 Host:	ftp.dcs.warwick.ac.uk;
 Directory:	 /pub/biblio.
+
 Tony Davie's bibliography of over 2,600 papers, articles and books on functional programming, available as a text file or a hypercard stack by ftp from:
 Host:	tamdhu.dcs.st-and.ac.uk;
 Directory:	 /pub/staple.
+
 "State in functional programming: an annotated bibliography", edited by P. Hudak and D. Rabin, available as a dvi or postscript file by ftp from:
 Host:	nebula.cs.yale.edu;
 Directory:	 /pub/yale-fp/papers.
+
 Wolfgang Schreiner's annotated bibliography of over 350 publications on parallel functional programming (most with abstracts), available on the web from:
 http://www.risc.uni-linz.ac.at/people/schreine/papers/pfpbib.ps.gz.
 
@@ -605,6 +604,7 @@ Over the years more and more features have been added, including subsorting, fun
 
 Host:	ftp.Uni-Bremen.DE;
 Directory:	 /pub/programming/languages/ASpecT.
+
 The most important application of ASpecT to date is the interactive graph visualization system daVinci; currently (September '96), version 2.0.x is composed of 34.000 lines of ASpecT code, 12.000 lines of C code and 8000 lines of Tcl/Tk code. daVinci is an X11 program, and is available for UNIX workstations from Sun, HP, IBM, DEC, SGI, and for Intel PCs with a UNIX operating system. Further information about daVinci is available on the web from:
 
 http://www.Informatik.Uni-Bremen.DE/~davinci.
@@ -614,10 +614,15 @@ http://www.Informatik.Uni-Bremen.DE/~davinci.
 Caml is a dialect of the ML language developed at INRIA that does not comply to the Standard, but actually tries to go beyond the Standard, in particular in the areas of separate compilation, modules, and objects. Two implementations of Caml are available:
 
 The older implementation, Caml Light, is distinguished by its small size, modest memory requirements, availability on microcomputers, simple separate compilation, interface with C, and portable graphics functions. It runs on most Unix machines, on the Macintosh and on PCs under Ms Windows and MSDOS. The current version at the time of writing is 0.71.
+
 A more ambitious implementation, Objective Caml (formerly known as Caml Special Light), is also available. It adds the following extensions to Caml Light:
+
 Full support for objects and classes, here combined for the first time with ML-style type reconstruction;
+
 A powerful module calculus in the style of Standard ML, but providing better support for separate compilation;
+
 A high-performance native code compiler, in addition to a Caml Light-style bytecode compiler.
+
 Objective Caml is available for Unix and Windows 95/NT, with the native-code compiler supporting the following processors: Alpha, Sparc, Pentium, Mips, Power, HPPA.
 
 Both implementations of Caml are available by ftp from:
@@ -629,21 +634,20 @@ Further information about Caml is available on the web from:
 http://pauillac.inria.fr/caml/index-eng.html (English);
 http://pauillac.inria.fr/caml/index-fra.html (French).
 
-
 ### 5.3. Clean
 
 The Concurrent Clean system is a programming environment for the functional language Concurrent Clean, developed at the University of Nijmegen in The Netherlands. The system is one of the fastest implementations of functional languages available at the time of writing. Through the use of uniqueness typing, it is possible to write purely functional interactive programs, including windows, menus, dialogs, etc. It is also possible to develop real-life applications that interface with non-functional systems. With version 1.0, the language emerged from an intermediate language to a proper programming language. Features provided by the language include:
 
-Lazy evaluation;
-Modern input/output;
-Annotations for parallelism;
-Automatic strictness analysis;
-Annotations for evaluation order;
-Inferred polymorphic uniqueness types;
-Records, mutable arrays, module structure;
-Existential types, type classes, constructor classes;
-Strong typing, based on the Milner/Mycroft scheme.
-Concurrent Clean is available for PCs (Microsoft Windows, Linux), Macintoshes (Motorola, PowerPC), and Sun4s (Solaris, SunOS). The system is available by ftp from:
+* Lazy evaluation;
+* Modern input/output;
+* Annotations for parallelism;
+* Automatic strictness analysis;
+* Annotations for evaluation order;
+* Inferred polymorphic uniqueness types;
+* Records, mutable arrays, module structure;
+* Existential types, type classes, constructor classes;
+* Strong typing, based on the Milner/Mycroft scheme.
+* Concurrent Clean is available for PCs (Microsoft Windows, Linux), Macintoshes (Motorola, PowerPC), and Sun4s (Solaris, SunOS). The system is available by ftp from:
 
 Host:	ftp.cs.kun.nl;
 Directory:	/pub/Clean.
@@ -658,28 +662,30 @@ A book describing the background and implementation of Concurrent Clean is also 
 
 Erlang is a dynamically typed concurrent functional programming language for large industrial real-time systems. Features of Erlang include:
 
-Modules;
-Recursion equations;
-Explicit concurrency;
-Pattern matching syntax;
-Dynamic code replacement;
-Foreign language interface;
-Real-time garbage collection;
-Asynchronous message passing;
-Relative freedom from side effects;
-Transparent cross-platform distribution;
-Primitives for detecting run-time errors.
-Erlang is freely available on the web from:
+* Modules;
+* Recursion equations;
+* Explicit concurrency;
+* Pattern matching syntax;
+* Dynamic code replacement;
+* Foreign language interface;
+* Real-time garbage collection;
+* Asynchronous message passing;
+* Relative freedom from side effects;
+* Transparent cross-platform distribution;
+* Primitives for detecting run-time errors.
 
+Erlang is freely available on the web from:
 http://www.erlang.org.
+
 Erlang is distributed together with full source code for a number of applications, including:
 
-Inets - HTTP 1.0 server and FTP client;
-Orber - CORBA v2.0 Object Request Broker (ORB);
-ASN.1 - compile-time and runtime package for ASN.1;
-SNMP - extensible SNMP v1/v2 agent and MIB compiler;
-Mnesia - distributed real-time database for Erlang;
-Mnemosyne - optional query language for Mnesia.
+* Inets - HTTP 1.0 server and FTP client;
+* Orber - CORBA v2.0 Object Request Broker (ORB);
+* ASN.1 - compile-time and runtime package for ASN.1;
+* SNMP - extensible SNMP v1/v2 agent and MIB compiler;
+* Mnesia - distributed real-time database for Erlang;
+* Mnemosyne - optional query language for Mnesia.
+
 See also:
 
 "Concurrent programming in Erlang" (second edition), J. Armstrong, M. Williams, R. Virding, and Claes Wikström, Prentice Hall, 1996. ISBN 0-13-508301-X.
@@ -694,6 +700,7 @@ A interpreter and a compiler (to C) for FP are available by ftp from:
 Host:	gatekeeper.dec.com;
 Directory:	 pub/usenet/comp.sources.unix/volume13/funcproglang;
 Directory:	 pub/usenet/comp.sources.unix/volume20/fpc.
+
 The Illinois FP system supports a modified version of FP that has a more Algol-like syntax and structure, and is described in the following article:
 
 "The Illinois functional programming interpreter", Arch D. Robison, Proceedings of the SIGPLAN '87 Symposium on Interpreters and Interpretive Techniques, SIGPLAN notices, Volume 22, Number 7, July 1987.
@@ -708,10 +715,12 @@ The most recent version of Gofer, 2.30a, is available by ftp from:
 
 Host:	ftp.cs.nott.ac.uk;
 Directory:	 /nott-fp/languages/gofer.
+
 Gofer runs on a wide range of machines including PCs, Ataris, Amigas, etc. as well as larger Unix-based systems. A version for the Apple Macintosh is also available, by ftp from:
 
 Host:	ftp.dcs.glasgow.ac.uk;
 Directory:	 /pub/haskell/gofer/macgofer.
+
 Please note the spelling of Gofer, derived from the notion that functional languages are GO(od) F(or) E(quational) R(easoning). This is not to be confused with `Gopher', the widely used internet distributed information delivery system.
 
 
@@ -726,14 +735,19 @@ At the time of writing, there are three different Haskell systems available, dev
 
 Host:	ftp.cs.chalmers.se;
 Directory:	 /pub/haskell.
+
 Host:	ftp.dcs.glasgow.ac.uk;
 Directory:	 /pub/haskell.
+
 Host:	haskell.cs.yale.edu;
 Directory:	 /pub/haskell.
+
 Host:	ftp.cs.nott.ac.uk;
 Directory:	 /haskell.
+
 Host:	src.doc.ic.ac.uk;
 Directory:	 /pub/computing/programming/languages/haskell.
+
 You can join the Haskell mailing list by emailing majordomo@dcs.gla.ac.uk, with a message body of the form: subscribe haskell Forename Surname <email@address>.
 
 
@@ -765,7 +779,9 @@ http://www.jsoftware.com.
 Miranda was designed in 1985-6 by David Turner with the aim of providing a standard non-strict purely functional language, and is described in the following articles:
 
 "Miranda: a non-strict functional language with polymorphic types", D.A. Turner, Proceedings FPLCA, Nancy, France, September 1985 (Springer LNCS vol 201, pp 1-16).
+
 "An overview of Miranda", D.A. Turner, SIGPLAN Notices, vol 21, no 12, pp 158-166, December 1986.
+
 Miranda was the first widely disseminated language with non-strict semantics and polymorphic strong typing, and is running at over 600 sites, including 250 universities. It is widely used for teaching, often in conjunction with "Introduction to Functional Programming", by Bird and Wadler, which uses a notation closely based on Miranda. It has also had a strong influence on the subsequent development of the field, and provided one of the main inputs for the design of Haskell.
 
 The Miranda™ system is a commercial product of Research Software Limited. Miranda release two (the current version at the time of writing) supports unbounded precision integers and has a module system with provision for parameterized modules and a built in "make" facility. The compiler works in conjunction with a screen editor and programs are automatically recompiled after edits. There is also an online reference manual.
@@ -773,6 +789,7 @@ The Miranda™ system is a commercial product of Research Software Limited. Mira
 Further information about Miranda is available on the web from:
 
 http://miranda.org.uk
+
 Miranda is not in the public domain but is free for personal and educational use.
 
 
@@ -794,14 +811,17 @@ There is a moderated usenet newsgroup, comp.lang.ml, for discussion of topics re
 
 Host:	pop.cs.cmu.edu;
 Directory:	 /usr/rowan/sml-archive/.
+
 The Standard ML language is formally defined by:
 
 "The Definition of Standard ML - Revised", Robin Milner, Mads Tofte, Robert Harper, and David MacQueen, MIT, 1997. ISBN 0-262-63181-4.
 Further information is available on the web from:
 
 http://mitpress.mit.edu/promotions/books/MILDPRF97.
+
 "Commentary on Standard ML", Robin Milner and Mads Tofte, MIT, 1990. ISBN 0-262-63137-7. Further information is available on the web from:
 http://mitpress.mit.edu/promotions/books/MILCPF90.
+
 There is now a revised version of Standard ML, sometimes referred to as "Standard ML '97" to distinguish it from the original 1990 version. The new version combines modest changes in the language with a major revision and expansion of the SML Basis Library. Further details about Standard ML '97 are available on the web from:
 
 http://cm.bell-labs.com/cm/cs/what/smlnj/sml97.html.
@@ -821,6 +841,7 @@ or by ftp from:
 
 Host:	nesl.scandal.cs.cmu.edu;
 Directory:	 nesl.
+
 You can join to the NESL mailing list by emailing nesl-request@cs.cmu.edu.
 
 
@@ -844,10 +865,12 @@ DFKI Oz is an interactive implementation of Oz featuring am Emacs programming in
 Further information about Oz is available on the web from:
 
 http://www.ps.uni-sb.de/oz/
+
 or by ftp from:
 
 Host:	ftp.ps.uni-sb.de;
 Directory:	 /pub/oz.
+
 Specific questions on Oz may be emailed oz@ps.uni-sb.de. You can join the Oz users mailing list by emailing oz-users-request@ps.uni-sb.de.
 
 
@@ -855,24 +878,23 @@ Specific questions on Oz may be emailed oz@ps.uni-sb.de. You can join the Oz use
 
 Pizza is a strict superset of Java that incorporates three ideas from functional programming:
 
-Parametric polymorphism;
-Higher-order functions;
-Algebraic data types.
+* Parametric polymorphism;
+* Higher-order functions;
+* Algebraic data types.
+
 Pizza is defined by translation into Java and compiles into the Java Virtual Machine, requirements which strongly constrain the design space. Thus Pizza programs interface easily with Java libraries, and programs first developed in Pizza may be automatically converted to Java for ease of maintenance. The Pizza compiler is itself written in Pizza, and may be used as a replacement for Sun's Java compiler (except that the Pizza compiler runs faster).
 
 Pizza was designed by Martin Odersky and Philip Wadler, and implemented by Odersky. The design is described in the following paper:
 
 "Pizza into Java: translating theory into practice", Martin Odersky and Philip Wadler, 24th ACM Symposium on Principles of Programming Languages, Paris, January 1997.
+
 The paper, downloads, and other information on Pizza is available on the web from any of the following locations (which mirror each other):
 
-http://www.cis.unisa.edu.au/~pizza;
-http://cm.bell-labs.com/cm/cs/who/wadler/pizza/welcome.html;
-
-http://wwwipd.ira.uka.de/~pizza;
-
-http://www.math.luc.edu/pizza/;
-
-ftp://ftp.eecs.tulane.edu/pub/maraist/pizza/welcome.html.
+* http://www.cis.unisa.edu.au/~pizza;
+* http://cm.bell-labs.com/cm/cs/who/wadler/pizza/welcome.html;
+* http://wwwipd.ira.uka.de/~pizza;
+* http://www.math.luc.edu/pizza/;
+* ftp://ftp.eecs.tulane.edu/pub/maraist/pizza/welcome.html.
 
 Pizza has received a `cool' award from Gamelan ( http://www-c.gamelan.com/.)
 
@@ -885,6 +907,7 @@ Scheme is a dialect of Lisp that stresses conceptual elegance and simplicity. It
 Further information about Scheme is available on the web from:
 
 http://www.schemers.org.
+
 There is an unmoderated usenet newsgroup, comp.lang.scheme, for the discussion of topics related to Scheme. A list of frequently asked questions (which includes details of the many books and papers concerned with Scheme) for this newsgroup is available by ftp from:
 
 Host:	ftp.think.com;
