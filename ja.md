@@ -180,12 +180,16 @@ Lisp and Symbolic Computation, published by Kluwer.
 
 The International Conference on Functional Programming (ICFP). This conference combines and replaces the earlier conferences on Lisp and Functional Programming (LFP), and Functional Programming Languages and Computer Architecture (FPCA). Further information about the next ICFP conference (October 2002 at the time of writing) is available on the web from:
 http://icfp2002.cs.brown.edu/.
+
 Mathematics of Program Construction (MPC). Further information about the most recent MPC conference (July 2000 at the time of writing) is available on the web from:
 http://seide.di.uminho.pt/~mpc2000/.
+
 Principles of Programming Languages (POPL). Further information about the next POPL conference (January 2001 at the time of writing) is available on the web from:
 http://www.daimi.au.dk/~popl01/.
+
 European Symposium on Programming (ESOP). Further information about the next ESOP conference (April 2001 at the time of writing) is available on the web from:
 http://www.md.chalmers.se/~dave/esop/.
+
 Most of these conferences have proceedings published by the ACM press, or in the Springer Verlag LNCS (Lecture Notes in Computer Science) series.
 
 In addition to the above, Philip Wadler edits a column on functional programming for the Formal Aspects of Computer Science Newsletter, which is published by the British Computing Society Formal Aspects of Computing group and Formal Methods Europe.
@@ -360,53 +364,100 @@ http://www.cs.bell-labs.com/~wadler/topics/monads.html#imperative
 "How to declare an imperative", Philip Wadler, ACM Computing Surveys, to appear. Available on the web from:
 http://www.cs.bell-labs.com/~wadler/topics/monads.html#monadsdeclare
 
-### 3.4. Parsers
+### 3.4. 構文解析器
+
+関数型言語で「構文解析器」をどうやって書けばよいですか？
 
 How can I write a "parser" in a functional programming language?
 
+構文解析器は入力トークンのリスト、通常は文字列を適切な型の値へと変換するプログラムである。
+簡単な例は、数字からなる文字列からそれが表す整数値を得る関数である。
+より複雑な例は、コンパイラやインタプリタの実装の第一フェーズとして
+concrete文法で書かれたプログラムの文字列を適切な抽象文法へと変換するものだ。
+関数型言語で構文解析器を書くには二つ共通した<!--なにに？-->方法がある:
+
 A parser is a program that converts a list of input tokens, usually characters, into a value of the appropriate type. A simple example might be a function to find the integer value represented by a string of digits. A more complex example might be to translate programs written in a particular concrete syntax into a suitable abstract syntax as the first stage in the implementation of a compiler or interpreter. There are two common ways to write a parser in a functional language:
 
-Using a parser generator tool. Some functional language implementations support tools that generate a parser automatically from a specification of the grammar. See:
+#### Using a parser generator tool.
+
+Some functional language implementations support tools that generate a parser automatically from a specification of the grammar. See:
+
 Happy: a parser generator system for Haskell and Gofer, similar to the tool `yacc' for C. Available on the web from:
 http://www.dcs.gla.ac.uk/fp/software/happy/.
+
 Ratatosk: a parser and scanner generator for Gofer. Available by ftp from:
 Host:	ftp.diku.dk;
 Directory:	 /pub/diku/dists.
+
 ML-Yacc and ML-Lex: an LALR parser generator and a lexical analyser generator for Standard ML. Included with SML/NJ, available by ftp from:
 Host:	ftp.research.bell-labs.com;
 Directory:	 /dist/smlnj.
-Using combinator parsing. Parsers are represented by functions and combined with a small set of combinators, leading to parsers that closely resemble the grammar of the language being read. Parsers written in this way can use backtracking. See:
+
+#### Using combinator parsing.
+
+Parsers are represented by functions and combined with a small set of combinators, leading to parsers that closely resemble the grammar of the language being read. Parsers written in this way can use backtracking. See:
+
 "How to replace failure with a list of successes", Philip Wadler, FPCA '85, Springer Verlag LNCS 201, 1985.
+
 "Higher-order functions for parsing", Graham Hutton, Journal of Functional Programming, Volume 2, Number 3, July 1992. Available on the web from:
 http://www.cs.nott.ac.uk/~gmh/bib.html#parsing.
 
-### 3.5. Strictness
+### 3.5. 正格性 (Strictness)
+
+関数型言語が「正格」である、「非正格」である、とは何のような意味ですか？
 
 What does it mean to say that a functional programming language is "strict" or "non-strict"?
 
+(操作的に)違いを説明してみると、
+
 Here's one (operational) way to explain the difference:
 
+正格な言語では、関数の引数は常にその関数コードが実行される前に評価される。
+その結果、もし `exp` という式の評価が(例えば、実行時エラーや無限ループなどの理由で)
+正常に終了しない場合、 `f(exp)` という式の評価も正常には終良しない。
+ML や Scheme はこの正格な言語の例である。
+
 In a strict language, the arguments to a function are always evaluated before it is invoked. As a result, if the evaluation of an expression exp does not terminate properly (for example, because it generates a run-time error or enters an infinite loop), then neither will an expression of the form f(exp). ML and Scheme are both examples of this.
+
+非正格な言語では、関数の引数は実際に必要になるまで評価されない。
+例えば、評価が正常に終了しない式 `exp` が関数に与えられても、その値が関数 `f` 内部で
+必要とされなけえば `f(exp)` という式の評価は正常に終了場合がある。
+Miranda や Haskell はこの非正格な言語の例である。
+
 In a non-strict language, the arguments to a function are not evaluated until their values are actually required. For example, evaluating an expression of the form f(exp) may still terminate properly, even if evaluation of exp would not, if the value of the parameter is not used in the body of f. Miranda and Haskell are examples of this approach.
+
+関数型プログラミングコミュニティでは正格な言語と非正格な言語のそれぞれの利点、欠点についてはさまざまな議論がある。
+しかしながら、この二つの評価方法が混在したプログラミング言語も考えることができる。
+例えば、 Hope のあるバージョンがそうである。
+
 There is much debate in the functional programming community about the relative merits of strict and non-strict languages. It is possible, however, to support a mixture of these two approaches; for example, some versions of the functional language Hope do this.
 
 
-### 3.6. Performance
+### 3.6. 実行効率
+
+関数型プログラムの実行効率はどれくらいのものですか？
 
 What is the performance of functional programs like?
+
+業界の一部では、関数型言語で書かれたプログラムは非効率である(遲い、メモリを食う)という評価を得てしまっている。一部の結果はこれらのプログラムの高度な抽象化や、高階関数や自動メモリ管理などの強力な機能によって引き起されている。もちろん、関数型言語のインタプリタやコンパイラの性能は技術開発によって改善されつづけている。
 
 In some circles, programs written in functional languages have obtained a reputation for lack of performance. Part of this results from the high-level of abstraction that is common in such programs and from powerful features such as higher-order functions, automatic storage management, etc. Of course, the performance of interpreters and compilers for functional languages keeps improving with new technological developments.
 
 Here are a selection of references for further reading:
 
 Over 25 implementations of different functional languages have been compared using a single program, the "Pseudoknot" benchmark, which is a floating-point intensive application taken from molecular biology. See:
+
 "Benchmarking implementations of functional languages with 'Pseudoknot', a float-intensive benchmark", Pieter H. Hartel et al, Journal of Functional Programming, 6(4):621-655, July 1996. Available on the web from:
 ftp://ftp.fwi.uva.nl/pub/computer-systems/functional/reports/.
+
 The paper below compares five implementations of lazy functional languages:
+
 "Benchmarking implementations of lazy functional languages", P.H. Hartel and K.G. Langendoen, FPCA 93, ACM, pp 341-349. Available by ftp from:
 Host:	ftp.fwi.uva.nl;
 Directory:	 pub/functional/reports.
+
 Experiments with a heavily optimising compiler for Sisal, a strict functional language, show that functional programs can be faster than Fortran. See:
+
 "Retire FORTRAN? A debate rekindled", D.C. Cann, Communications of the ACM, 35(8), pp. 81-89, August 1992.
 Postscript versions of a number of papers from the 1995 conference on High Performance Functional Computing (HPFC) are available on the web from:
 ftp://sisal.llnl.gov/pub/hpfc/index.html.
@@ -420,12 +471,6 @@ Where can I find out about applications of functional programming?
 関数型言語を使った関数型プログラミングの実世界での応用例、
 単なる関数型プログラミングの実験的実装などではなく、
 何か実世界の問題を解決するために関数型言語が使用された例のリストがネット上に公開、更新されている。
-
-An online list of real-world applications of functional programming is maintained, which includes programs written in several different functional languages. The main criterion for being considered a real-world application is that the program was written primarily to perform some task, rather than to experiment with functional programming.
-
-以下の情報がインターネットで入手できる:
-
-Further details are available on the web from:
 
 http://homepages.inf.ed.ac.uk/wadler/realworld/ <!-- 確認済 -->
 
@@ -660,6 +705,8 @@ The Illinois FP system supports a modified version of FP that has a more Algol-l
 
 "The Illinois functional programming interpreter", Arch D. Robison, Proceedings of the SIGPLAN '87 Symposium on Interpreters and Interpretive Techniques, SIGPLAN notices, Volume 22, Number 7, July 1987.
 
+### 5.5.5 F#
+
 ### 5.6. Gofer
 
 The Gofer system provides an interpreter for a small language based closely on the current version of the Haskell report. In particular, Gofer supports lazy evaluation, higher-order functions, polymorphic typing, pattern-matching, support for overloading, etc.
@@ -851,6 +898,7 @@ The paper, downloads, and other information on Pizza is available on the web fro
 
 Pizza has received a `cool' award from Gamelan ( http://www-c.gamelan.com/.)
 
+### 5.18.5 Scala
 
 ### 5.19. Scheme
 
