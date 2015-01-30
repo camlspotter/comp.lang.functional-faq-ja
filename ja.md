@@ -66,7 +66,7 @@ http://www.cs.nott.ac.uk/~gmh/faq.html
 
 > 「関数型言語」とはなんぞや？
 
-「関数型言語」を構成する物は正確にはなんなのか、これは関数型プログラミングコミュニティの中でさえ意見が別れていて、統一された定義はない。しかしながら、comp.lang.functional で議論されているプログラミング言語達の特徴を良く表す広く使われている定義は次のようなものである:
+「関数型言語」を構成する物は正確にはなんなのか、これは関数型プログラミングコミュニティの中でさえ意見が別れていて、**統一された定義はない**。しかしながら、comp.lang.functional で議論されているプログラミング言語達の特徴を良く表す広く使われている定義は次のようなものである:
 
 **関数型プログラミング**とは、コマンドの実行よりも、式の評価に重きを置くプログラミングスタイルである。
 関数型プログラムでは、基本的な値と関数を組合せることによって式そしてプログラムを構成していく。
@@ -83,7 +83,7 @@ for (i=1; i<=10; ++i)
    total += i;
 ```
 
-関数型言語では、同じプログラムを変数への代入を一切行わずに書くことができる。例えば Haskell では、 1 から 10 を足すという式をそのまま評価する事で結果が得られる:
+関数型言語では、同じプログラムを変数への代入を一切行わずに書くことができる。例えば Haskell では、 1 から 10 を足すという式を評価する事で結果が得られる:
 
 ``` Haskell
 sum [1..10]
@@ -91,7 +91,7 @@ sum [1..10]
 
 ここで `[1..10]` とは 1 から 10 までの整数のリストを意味する式で、`sum` はリスト中の値の合計を計算する関数である。
 
-同じアイデアは SML や Scheme の様な(正格<!-- CR jfuruse: link -->))な関数型言語でも使える。が、それは再帰的に書かれたループとして表現される事が表される事が多い。ただし、ここでも変数の値を更新するということは行われていないことに注意してほしい(訳註: Haskell の `sum` も再帰を使ったループとして実装されている):
+同じアイデアは SML や Scheme の様な(正格<!-- CR jfuruse: link -->))な関数型言語でも使える。が、それは再帰的に書かれたループとして表現される事が多い。ただし、ここでも手続き型言語のような変数の値を更新するということは行われていないことに注意してほしい(訳註: Haskell の `sum` も再帰を使ったループとして実装されている):
 
 SML:
 ``` SML
@@ -114,24 +114,23 @@ Scheme:
 関数型言語で手続き型スタイルのプログラムを書くこともよくある。
 ある特定のプログラミング言語が関数型かどうか、というのは結局の所、主観の問題である。
 
-### 2.2. History and motivation
+### 2.2. 歴史と動機(motivation)
 
-> Where can I find out more about the history and motivation for functional programming?
+> 関数型プログラミングについての歴史的経緯や、なぜ関数型プログラミングを行うべきか、についての資料はありませんか？
 
-Here are two useful references:
+二つほど参考文献をあげる:
 
 "Conception, Evolution, and Application of Functional Programming Languages", Paul Hudak, ACM Computing Surveys, Volume 21, Number 3, pp.359-411, 1989.
 
-"Why functional programming matters", John Hughes, The Computer Journal, Volume 32, Number 2, April 1989. Available on the web from:
-http://www.cs.chalmers.se/~rjmh/Papers/whyfp.html.
+["なぜ関数プログラミングは重要か"](http://www.sampou.org/haskell/article/whyfp.html), John Hughes 著、山下伸夫訳。(原文は、"Why functional programming matters", John Hughes, The Computer Journal, Volume 32, Number 2, April 1989. Available on the web from: http://www.cse.chalmers.se/~rjmh/Papers/whyfp.html <!--リンク修正確認済 -->)
 
-### 2.3. Textbooks
+### 2.3. 教科書
 
-> Are there any textbooks about functional programming?
+> 関数型プログラミングについての教科書はありますか？
 
-Yes, here are a selection:
+次の物をお勧めする:(訳註:このリストは古い！)
 
-#### Programming:
+#### プログラミング
 
 "Introduction to functional programming using Haskell", 2nd edition, Richard Bird, Prentice Hall Europe, 1998. ISBN 0-13-484346-0.
 
@@ -144,39 +143,42 @@ http://www.cs.ukc.ac.uk/people/staff/sjt/craft2e.
 "ML for the working programmer", 2nd Edition, L.C. Paulson, Cambridge University Press, 1996. ISBN 0-521-56543-X. Further information is available on the web from:
 http://www.cl.cam.ac.uk/users/lcp/MLbook/.
 
-#### Algorithms and data structures:
+#### アルゴリズムとデータ構造
 
 "Purely functional data structures", Chris Okasaki, Cambridge University Press, 1998. ISBN 0-521-63124-6.
+(訳註: 著者の同タイトルの博士論文も参考になるだろう http://www.cs.cmu.edu/~rwh/theses/okasaki.pdf)
 
 "Algorithms: A functional programming approach", Fethi Rabhi and Guy Lapalme, Addison-Wesley, 1999. ISBN 0-201-59604-0. Further information is available on the web from:
 http://www.iro.umontreal.ca/~lapalme/Algorithms-functional.html.
 
-#### Implementation:
+#### 関数型言語処理系の実装法
 
 "The implementation of functional programming languages", Simon Peyton Jones, Prentice Hall, 1987. ISBN 0-13-453333-X.
 
 "Compiling with continuations", Andrew Appel, Cambridge University Press, 1992. ISBN 0-521-41695-7. Further information is available on the web from:
 http://www.cup.org/Titles/416/0521416957.html.
 
-There are several other textbooks available, particularly in the programming and implementation categories. A comparison of a number of functional programming textbooks is made in the following article:
+関数型言語を使ったプログラミングや関数型言語処理系についての教科書は他にもいくつかある。次の記事はそれらの比較を行っている:
 
-"Comparative review of functional programming textbooks (Bailey, Bird and Wadler, Holyer, Paulson, Reade, Sokoloski, Wikstrom)", Simon Thompson, Computing Reviews, May 1992 (CR number 9205-0262).
+"Comparative review of functional programming textbooks (Bailey, Bird and Wadler, Holyer, Paulson, Reade, Sokoloski, Wikstrom)", Simon Thompson, Computing Reviews, May 1992 (CR number 9205-0262). (訳註: 1992年なので古い)
 
-### 2.4. Journals and conferences
+### 2.4. 学術誌と学会
 
-> Are there any journals and conferences about functional programming?
+> 関数型プログラミングに関する学術誌や学会にはどんなものがありますか？
 
 Yes, here are a selection:
 
-#### Journals:
+#### 学術誌
 
 The Journal of Functional Programming (JFP), published by Cambridge University Press. Further information is available on the web from:
 http://www.dcs.gla.ac.uk/jfp/.
+
 The Journal of Functional and Logic Programming (JFLP), an electronic journal published by MIT Press, and available on the web from:
 http://www.cs.tu-berlin.de/journal/jflp/.
+
 Lisp and Symbolic Computation, published by Kluwer.
 
-#### Conferences:
+#### 学会
 
 The International Conference on Functional Programming (ICFP). This conference combines and replaces the earlier conferences on Lisp and Functional Programming (LFP), and Functional Programming Languages and Computer Architecture (FPCA). Further information about the next ICFP conference (October 2002 at the time of writing) is available on the web from:
 http://icfp2002.cs.brown.edu/.
@@ -245,26 +247,27 @@ http://www.kurims.kyoto-u.ac.jp/~ohori/fuji96.html.
 The 1st Workshop on Functional Programming in Argentina, September 12, 1996, Buenos Aires, Argentina. Further information is available on the web from:
 http://www-lifia.info.unlp.edu.ar/~lambda/first/english/.
 
-### 2.6. Education
+### 2.6. 教育
 
-> Are functional programming languages useful in education?
+> 関数型プログラミングは教育用途として優れているのでしょうか。
+
+関数型言語は教育用途として流行っている(momentum)、なぜなら
+プログラミング一般の概念の表現が簡単で高レベルの抽象化。。。 <!-- あかん -->
+今や、関数型言語は多くの大学のコンピュータサイエンス学科のプログラミングコースで使われており、
+その中には最初のプログラミング言語として教えているところさえある。
+関数型言語の教育用途としての状況は次のウェブページにまとめられている:
 
 Functional languages are gathering momentum in education because they facilitate the expression of concepts and structures at a high level of abstraction. Many university computing science departments now make use of functional programming in their undergraduate courses; indeed, a number of departments teach a functional language as their first programming language. Further information about the use of functional programming languages in education (including links to relevant conferences and workshops) is available on the web from:
 
-http://www.cs.kun.nl/fple/.
+http://www.cs.kun.nl/fple/. (リンク切れ)
 
 ## 3. 技術的側面 (Technical topics)
 
 このセクションでは関数型言語に関する技術的な疑問の幾つかに簡単に答え、関係する資料やインターネット情報を紹介する。
 
-This section gives brief answers to a number of technical questions concerning functional programming languages, and some pointers to relevant literature and internet resources.
-
-
 ### 3.1. 純粋性 (Purity)
 
 > 「純粋関数型」言語とはなんぞや？
-
-What is a "purely functional" programming language?
 
 この問は関数型プログラミングコミュニティの中でもしばらく議論になっていた。
 現在は、 Haskell や Miranda のような言語が「純粋関数的」であり、
@@ -276,43 +279,40 @@ SML や Scheme はそうではない、ということで大体の合意が取�
 This question has been the subject of some debate in the functional programming community. It is widely agreed that languages such as Haskell and Miranda are "purely functional", while SML and Scheme are not. However, there are some small differences of opinion about the precise technical motivation for this distinction. One definition that has been suggested is as follows:
 
 「純粋関数型」という用語は、全ての計算が関数適用によって行われるプログラミング言語を指して良く使われる。
-それに対し、Scheme や Standard ML (SML) <!-- 名称不統一 --> のような言語はほぼ
-関数型ではあるが、"副作用"(式の評価が終了しても後の環境に影響を与えるような計算)も持っている。 
-
-The term "purely functional" is often used to describe languages that perform all their computations via function application. This is in contrast to languages, such as Scheme and Standard ML, that are predominantly functional but also allow `side effects' (computational effects caused by expression evaluation that persist after the evaluation is completed).
+それに対し、Scheme や Standard ML (SML) <!-- 名称不統一 --> のような言語は
+ほぼ「関数型」ではあるが、「副作用」(式の評価終了後も計算環境に影響を与えるような計算作用)も持っている。 
 
 しばしば、「純粋関数的」という用語は
 広い意味で
 (関数の必須性質が保存されるとうい事実を以て)
-計算作用(副作用？<!-- 多分そう言ってはいけない -->)を持つが、"関数"の概念を変えてしまわない
+計算作用(副作用？<!-- 多分そう言ってはいけない -->)を持つが、「関数」の概念を変えてしまわない
 プログラミング言語にも使われる。
-式の評価は"仕事"を生成するが、その仕事の計算作用を引き起す実際の実行は別れて行なわれる。
+式の評価は「仕事」を生成するが、その仕事の計算作用を引き起す実際の実行は別れて行なわれる。
 評価と実行のフェーズは
 評価フェーズが式や関数の基本性質(参照透明性のこと)を汚すことがないように分られている。
 例えば Haskell の入出力はこの種のものである。
 
 Sometimes, the term "purely functional" is also used in a broader sense to mean languages that might incorporate computational effects, but without altering the notion of `function' (as evidenced by the fact that the essential properties of functions are preserved.) Typically, the evaluation of an expression can yield a `task', which is then executed separately to cause computational effects. The evaluation and execution phases are separated in such a way that the evaluation phase does not compromise the standard properties of expressions and functions. The input/output mechanisms of Haskell, for example, are of this kind.
 
-See also:
+詳しくは次を参照されたい:
+
 "What is a purely functional language", Amr Sabry, Journal of Functional Programming, 8(1):1-22, Cambridge University Press, January 1998.
 
 ### 3.2. カリー化 (Currying)
 
 > 「カリー化」とはなんぞや？そしてその由来は？
 
-What is "currying", and where does it come from?
-
 カリー化は関数に関する数学研究にそのルーツがある。
 1893年に[フレーゲ](http://ja.wikipedia.org/wiki/%E3%82%B4%E3%83%83%E3%83%88%E3%83%AD%E3%83%BC%E3%83%97%E3%83%BB%E3%83%95%E3%83%AC%E3%83%BC%E3%82%B2)
-は関数を考える際には一引数のものだけを考えても一般性は損なわれない事を発見した。<!-- CR jfuruse: 硬い -->
-たとえば、任意の二引数関数 f(x,y) に対し、 f'(x) という関数を返す一引数の関数があり、その結果に引数 y を適用すると (f'(x))(y) = f(x,y) となるような物が存在する。<!-- CR jfuruse: 日本語下手 -->
-これは、(A x B -> C) と (A -> (B -> C)) という集合が同相である事と一致する (x は直積、 -> は関数空間を表す)。関数型プログラミングでは、関数適用は並置され( f(x) と書かずに f x と書くこと)左結合であると仮定すると、上の等式は `f' x y = f(x, y)` となる。
+は関数を考える際には一引数関数だけを考えても理論の一般性が損なわれない事を発見した。<!-- CR jfuruse: 硬い -->
+たとえば、任意の二引数関数 f(x,y) に対し、 f'(x) という**関数を返す一引数の関数**があり、その結果に引数 y を適用すると (f'(x))(y) = f(x,y) となるような物が存在する。<!-- CR jfuruse: 日本語下手 -->
+これは、(A x B -> C) と (A -> (B -> C)) という集合が同相である事と一致する (x は直積、 -> は関数空間を表す)。関数型プログラミングでは通常、関数適用は並置され( f(x) と書かずに f x と書くこと)、左結合であるので、上の等式は `f' x y = f(x, y)` となる。
 
 Currying has its origins in the mathematical study of functions. It was observed by Frege in 1893 that it suffices to restrict attention to functions of a single argument. For example, for any two parameter function f(x,y), there is a one parameter function f' such that f'(x) is a function that can be applied to y to give (f'(x))(y) = f (x,y). This corresponds to the well known fact that the sets (AxB -> C) and (A -> (B -> C)) are isomorphic, where "x" is cartesian product and "->" is function space. In functional programming, function application is denoted by juxtaposition, and assumed to associate to the left, so that the equation above becomes f' x y = f(x,y).
 
 明らかにフレーゲはそれ以上この考えを前進させなかった。これはその後独立して[ショーンフィンケル](http://en.wikipedia.org/wiki/Moses_Sch%C3%B6nfinkel)によって、
 関数構造と関係のある<!--?-->全ての関数は K と S という２つの基本コンビネータによって表すことができるという
-結果と共に再発見される。その十年後、このアイデアは[ハスケル・カリー](http://ja.wikipedia.org/wiki/%E3%83%8F%E3%82%B9%E3%82%B1%E3%83%AB%E3%83%BB%E3%82%AB%E3%83%AA%E3%83%BC)によって発明されるこのコンビネータ論理に発展した。「カリー化」の名は彼の功績によるものである。上の例の関数 `f'` は関数 `f` を「カリー化」したものである。関数型プログラミングの観点からは、カリー化は次の関数で表される:
+[結果](http://ja.wikipedia.org/wiki/SKI%E3%82%B3%E3%83%B3%E3%83%93%E3%83%8D%E3%83%BC%E3%82%BF%E8%A8%88%E7%AE%97)と共に再発見される。その十年後、このアイデアは[ハスケル・カリー](http://ja.wikipedia.org/wiki/%E3%83%8F%E3%82%B9%E3%82%B1%E3%83%AB%E3%83%BB%E3%82%AB%E3%83%AA%E3%83%BC)によって発明される[コンビネータ論理](http://ja.wikipedia.org/wiki/%E3%82%B3%E3%83%B3%E3%83%93%E3%83%8D%E3%83%BC%E3%82%BF%E8%AB%96%E7%90%86)に発展した。「カリー化」の名は彼の功績によるものである。上の例の関数 `f'` は関数 `f` を「カリー化」したものである。関数型プログラミングの観点からは、カリー化は次の関数で表される:
 
 Apparently, Frege did not pursue the idea further. It was rediscovered independently by Schoenfinkel, together with the result that all functions having to do with the structure of functions can be built up out of only two basic combinators, K and S. About a decade later, this sparked off the subject of combinatory logic, invented by Haskell Curry. The term "currying" honours him; the function f' in the example above is called the "curried" form of the function f. From a functional programming perspective, currying can be described by a function:
 
@@ -320,7 +320,7 @@ Apparently, Frege did not pursue the idea further. It was rediscovered independe
 curry : ((a,b) -> c) -> (a -> b -> c)
 ```
 
-この逆操作は、当然だが「逆カリー化」(uncurrying) <!-- 訳語不詳 --> と呼ばれる:
+この逆操作は、当然のことだが「逆カリー化」(uncurrying) <!-- 訳語不詳 --> と呼ばれる:
 
 
 The inverse operation is, unsurprisingly, refered to as uncurrying:
@@ -330,8 +330,6 @@ uncurry : (a -> b -> c) -> ((a,b) -> c)
 ```
 
 より詳しくは、次を参照のこと:
-
-For further reading, see:
 
 "Highlights of the history of the lambda-calculus", J. Barkley Rosser, ACM Lisp and Functional Programming, 1982.
 
@@ -343,12 +341,10 @@ For further reading, see:
 
 > 「モナド」とはなんぞや？そして何のためにあるのか？
 
-What is a "monad", and what are they used for?
-
-モナドの概念は圏論からきている。モナドの詳細は圏論の標準的な教科書であれば必ず載っている。
+モナドの概念は圏論からきている。モナドの詳細は圏論の標準的な教科書には必ず載っている。
 関数型プログラミングでのモナドに対する関心の多くは、
-モナドが Haskell などの純粋関数型言語の多くの機能、例えば、入出力、状態、継続、例外など、を
-普遍的に記述できる以下に挙げる研究の成果によるものである:
+Haskell などの純粋関数型言語の多くの機能、例えば、入出力、状態、継続、例外など、
+がモナドによって普遍的に記述できるという、以下の研究の成果によるものである:
 
 The concept of a monad comes from category theory; full details can be found in any standard textbook on the subject. Much of the interest in monads in functional programming is the result of recent papers that show how monads can be used to describe all kinds of different programming language features (for example, I/O, manipulation of state, continuations and exceptions) in purely functional languages such as Haskell:
 
@@ -404,9 +400,7 @@ http://www.cs.nott.ac.uk/~gmh/bib.html#parsing.
 
 ### 3.5. 正格性 (Strictness)
 
-関数型言語が「正格」である、「非正格」である、とは何のような意味ですか？
-
-What does it mean to say that a functional programming language is "strict" or "non-strict"?
+> 関数型言語が「正格」である、「非正格」である、とは何のような意味ですか？
 
 (操作的に)違いを説明してみると、
 
@@ -421,7 +415,7 @@ In a strict language, the arguments to a function are always evaluated before it
 
 非正格な言語では、関数の引数は実際に必要になるまで評価されない。
 例えば、評価が正常に終了しない式 `exp` が関数に与えられても、その値が関数 `f` 内部で
-必要とされなけえば `f(exp)` という式の評価は正常に終了場合がある。
+必要とされなけえば `exp` は評価されることがなく、 `f(exp)` という式の評価が正常に終了する場合がある。
 Miranda や Haskell はこの非正格な言語の例である。
 
 In a non-strict language, the arguments to a function are not evaluated until their values are actually required. For example, evaluating an expression of the form f(exp) may still terminate properly, even if evaluation of exp would not, if the value of the parameter is not used in the body of f. Miranda and Haskell are examples of this approach.
@@ -435,7 +429,7 @@ There is much debate in the functional programming community about the relative 
 
 ### 3.6. 実行効率
 
-関数型プログラムの実行効率はどれくらいのものですか？
+> 関数型プログラムの実行効率はどれくらいのものですか？
 
 What is the performance of functional programs like?
 
@@ -929,4 +923,4 @@ http://www.llnl.gov/sisal/SisalHomePage.html.
 
 -----
 
-The original version of this Frequently Asked Questions list (FAQ) was compiled and edited by Mark P. Jones. All questions, comments, corrections, and suggestions regarding this document should be addressed to the current editor, Graham Hutton.
+この FAQ の最初期のバージョンは Mark P. Jones により編纂された。英語で書かれたオリジナル版での全ての質問、コメント、修正、提案などは現在の編者である Graham Hutton に送ってほしい。日本語翻訳の問合せは Jun Furuse に連絡されたい。
